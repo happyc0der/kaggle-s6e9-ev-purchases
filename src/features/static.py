@@ -119,6 +119,13 @@ def build_static(tr: pd.DataFrame, te: pd.DataFrame, orig: pd.DataFrame, version
     cache = PROC / f"static_{version}.parquet"
     if cache.exists():
         return pd.read_parquet(cache)
+    if version == "v2":  # v1 + original-row similarity features
+        from .origmatch import build_origmatch
+        base = build_static(tr, te, orig, "v1")
+        df = pd.concat([tr[FEATURES], te[FEATURES]], ignore_index=True)
+        out = pd.concat([base, build_origmatch(df, orig)], axis=1)
+        out.to_parquet(cache)
+        return out
     df = pd.concat([tr[FEATURES], te[FEATURES]], ignore_index=True)
     parts = [df.reset_index(drop=True)]
     parts.append(base_extras(df))
@@ -143,4 +150,5 @@ GROUPS = {
     "digits": ["inc_d_dec", "inc_d1", "inc_d2", "inc_d3", "inc_d4", "inc_mod100", "inc_mod1000", "inc_is_int",
                "inc_is_30k", "com_d_dec", "com_d1", "com_is_int", "com_is_5"],
     "pairs": [f"cnt_{a[:6]}_{b[:6]}" for a, b in PAIRS_DEFAULT],
+    "origmatch": [f"om_{k}_{s}" for k in ("inc", "com", "pair") for s in ("bestmatch", "meanmatch", "labbest", "labmean", "norig")],
 }

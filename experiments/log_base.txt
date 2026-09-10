@@ -1,0 +1,5 @@
+  lgb_raw fold 0: auc 0.942231 iters 856 (21s)
+  lgb_raw fold 1: auc 0.942389 iters 914 (43s)
+  lgb_raw fold 2: auc 0.942151 iters 1213 (69s)
+  lgb_raw fold 3: auc 0.943205 iters 1293 (99s)
+  lgb_raw fold 4: auc 0.942632 iters 1112 (124s)
