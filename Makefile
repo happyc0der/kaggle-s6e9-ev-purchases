@@ -1,3 +1,4 @@
+.PHONY: data test base fe
 PY=.venv/bin/python
 data:
 	.venv/bin/kaggle competitions download -c playground-series-s6e9 -p data/raw && cd data/raw && unzip -o playground-series-s6e9.zip && rm playground-series-s6e9.zip
