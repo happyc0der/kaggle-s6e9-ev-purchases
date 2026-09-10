@@ -41,3 +41,8 @@
 2026-09-10 17:15,lgb_full_temulti_tuneB,lgb,0.945987,45,10,lgb_full_temulti,+0.000042,+2.70
 2026-09-10 17:19,lgb_m3_inner20,lgb,0.945984,45,10,lgb_full_temulti_m3,-0.000004,-0.23
 2026-09-10 17:23,lgb_m3_inccom,lgb,0.945982,46,10,lgb_full_temulti_m3,-0.000006,-0.38
+2026-09-10 17:27,lgb_m3_incsub,lgb,0.945938,46,10,lgb_full_temulti_m3,-0.000050,-2.80
+2026-09-10 17:31,lgb_m3_incbin500sub,lgb,0.945911,48,10,lgb_full_temulti_m3,-0.000077,-3.19
+2026-09-10 17:34,lgb_m3_nativecat,lgb,0.943311,47,10,lgb_full_temulti_m3,-0.002677,-37.20
+2026-09-10 17:38,lgb_m1,lgb,0.945989,45,10,lgb_full_temulti_m3,+0.000001,+0.05
+2026-09-10 17:42,lgb_m3_stag,lgb,0.945966,50,10,lgb_full_temulti_m3,-0.000022,-1.37

@@ -1,0 +1,45 @@
+[LightGBM] [Warning] Met categorical feature which contains sparse values. Consider renumbering to consecutive integers started from zero
+  lgb_m3_nativecat fold 0: auc 0.944533 iters 120 (17s)
+[LightGBM] [Warning] Met categorical feature which contains sparse values. Consider renumbering to consecutive integers started from zero
+  lgb_m3_nativecat fold 1: auc 0.943812 iters 147 (34s)
+[LightGBM] [Warning] Met categorical feature which contains sparse values. Consider renumbering to consecutive integers started from zero
+  lgb_m3_nativecat fold 2: auc 0.943772 iters 151 (52s)
+[LightGBM] [Warning] Met categorical feature which contains sparse values. Consider renumbering to consecutive integers started from zero
+  lgb_m3_nativecat fold 3: auc 0.944799 iters 120 (69s)
+[LightGBM] [Warning] Met categorical feature which contains sparse values. Consider renumbering to consecutive integers started from zero
+  lgb_m3_nativecat fold 4: auc 0.944852 iters 124 (85s)
+[LightGBM] [Warning] Met categorical feature which contains sparse values. Consider renumbering to consecutive integers started from zero
+  lgb_m3_nativecat fold 5: auc 0.944064 iters 122 (102s)
+[LightGBM] [Warning] Met categorical feature which contains sparse values. Consider renumbering to consecutive integers started from zero
+  lgb_m3_nativecat fold 6: auc 0.941852 iters 151 (120s)
+[LightGBM] [Warning] Met categorical feature which contains sparse values. Consider renumbering to consecutive integers started from zero
+  lgb_m3_nativecat fold 7: auc 0.942092 iters 121 (136s)
+[LightGBM] [Warning] Met categorical feature which contains sparse values. Consider renumbering to consecutive integers started from zero
+  lgb_m3_nativecat fold 8: auc 0.943001 iters 121 (153s)
+  lgb_m3_nativecat fold 9: auc 0.943858 iters 121 (169s)
+  vs lgb_full_temulti_m3: -0.002677 (se 0.000072, z -37.2)
+== lgb_m3_nativecat: pooled OOF 0.943311 | folds 0.943664 ± 0.000994
+  lgb_m1 fold 0: auc 0.946600 iters 676 (20s)
+  lgb_m1 fold 1: auc 0.946369 iters 906 (45s)
+  lgb_m1 fold 2: auc 0.946099 iters 1062 (72s)
+  lgb_m1 fold 3: auc 0.947042 iters 830 (95s)
+  lgb_m1 fold 4: auc 0.946946 iters 449 (111s)
+  lgb_m1 fold 5: auc 0.946325 iters 921 (136s)
+  lgb_m1 fold 6: auc 0.944460 iters 807 (158s)
+  lgb_m1 fold 7: auc 0.944594 iters 877 (182s)
+  lgb_m1 fold 8: auc 0.945441 iters 848 (205s)
+  lgb_m1 fold 9: auc 0.946139 iters 727 (227s)
+  vs lgb_full_temulti_m3: +0.000001 (se 0.000015, z +0.0)
+== lgb_m1: pooled OOF 0.945989 | folds 0.946001 ± 0.000853
+  lgb_m3_stag fold 0: auc 0.946624 iters 523 (19s)
+  lgb_m3_stag fold 1: auc 0.946319 iters 984 (46s)
+  lgb_m3_stag fold 2: auc 0.946074 iters 934 (72s)
+  lgb_m3_stag fold 3: auc 0.947012 iters 696 (94s)
+  lgb_m3_stag fold 4: auc 0.946929 iters 938 (120s)
+  lgb_m3_stag fold 5: auc 0.946320 iters 867 (145s)
+  lgb_m3_stag fold 6: auc 0.944502 iters 901 (170s)
+  lgb_m3_stag fold 7: auc 0.944490 iters 737 (193s)
+  lgb_m3_stag fold 8: auc 0.945408 iters 884 (218s)
+  lgb_m3_stag fold 9: auc 0.946077 iters 662 (239s)
+  vs lgb_full_temulti_m3: -0.000022 (se 0.000016, z -1.4)
+== lgb_m3_stag: pooled OOF 0.945966 | folds 0.945976 ± 0.000858

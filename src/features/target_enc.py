@@ -36,6 +36,7 @@ class TESpec:
     name: str = ""
     inner: int = 5  # inner folds for the training-row encoding
     offset: float = 0.0  # shift applied before binning (half-width offset gives staggered bins)
+    resid: bool = False  # encode mean(y - p_base) instead of mean(y); p_base supplied by the runner
 
     def key(self, df: pd.DataFrame) -> np.ndarray:
         if self.binwidth is None:
@@ -51,15 +52,21 @@ class TESpec:
         b = f"_b{self.binwidth:g}" if self.binwidth else ""
         i = f"_i{self.inner}" if self.inner != 5 else ""
         i += f"_o{self.offset:g}" if self.offset else ""
+        i += "_r" if self.resid else ""
         return "te_" + "_".join(c[:6] for c in self.cols) + b + f"_m{self.m:g}" + i
 
 
 def nested_te(spec: TESpec, df_tr: pd.DataFrame, y: np.ndarray, tr_idx, va_idx, df_te: pd.DataFrame,
-              inner_folds=None, seed=0):
+              inner_folds=None, seed=0, p_base=None):
+    """Returns (enc_train_rows[tr_idx order], enc_valid_rows, enc_test).
+
+    p_base: optional (train_probs, test_probs) used when spec.resid is set; the encoded target becomes y - p_base."""
     inner_folds = inner_folds or spec.inner
-    """Returns (enc_train_rows[tr_idx order], enc_valid_rows, enc_test)."""
     k_all = spec.key(df_tr)
     k_te = spec.key(df_te)
+    if spec.resid:
+        assert p_base is not None, "resid TE needs p_base"
+        y = y - p_base[0]
     prior = float(y[tr_idx].mean())
     k_tr, y_tr = k_all[tr_idx], y[tr_idx]
     enc_tr = np.empty(len(tr_idx), dtype=np.float32)

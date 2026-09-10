@@ -1,0 +1,2 @@
+  lgb_m3_teseed1 fold 0: auc 0.946712 iters 735 (21s)
+  lgb_m3_teseed1 fold 1: auc 0.946330 iters 839 (45s)

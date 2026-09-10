@@ -44,7 +44,7 @@ def run(name: str, cols: list[str], te_specs: list[TESpec] | None = None, model=
     te_specs = te_specs or []
     tr, te, orig, static, y, folds = get_data(static_version)
     assert n_folds == N_FOLDS, "folds are frozen at N_FOLDS"
-    sig = signature(cols=cols, te=[(s.cols, s.m, s.decimals, s.binwidth, s.inner, s.offset) for s in te_specs], model=model,
+    sig = signature(cols=cols, te=[(s.cols, s.m, s.decimals, s.binwidth, s.inner, s.offset, s.resid) for s in te_specs], model=model,
                     params=params, cat_cols=cat_cols, noise=noise, seed_te=seed_te, sv=static_version,
                     extra=getattr(extra_fn, "__name__", None))
     d = EXP / name
@@ -76,8 +76,15 @@ def run(name: str, cols: list[str], te_specs: list[TESpec] | None = None, model=
     for k in fold_ids:
         tr_idx, va_idx = np.where(folds != k)[0], np.where(folds == k)[0]
         Xtr, Xva, Xte = X_tr_all.iloc[tr_idx].copy(), X_tr_all.iloc[va_idx].copy(), X_te_all.copy()
+        p_base = None
+        if any(s.resid for s in te_specs):
+            # leak-free base probability: 1-D logistic fit of the recovered buy-score on this fold's training rows
+            from sklearn.linear_model import LogisticRegression
+            bs = static["buy_score"].to_numpy(np.float64).reshape(-1, 1)
+            lr = LogisticRegression(C=1e6).fit(bs[:ntr][tr_idx], y[tr_idx])
+            p_base = (lr.predict_proba(bs[:ntr])[:, 1], lr.predict_proba(bs[ntr:])[:, 1])
         for spec in te_specs:
-            a, b, c = nested_te(spec, df_tr_raw, y, tr_idx, va_idx, df_te_raw, seed=seed_te)
+            a, b, c = nested_te(spec, df_tr_raw, y, tr_idx, va_idx, df_te_raw, seed=seed_te, p_base=p_base)
             Xtr[spec.colname], Xva[spec.colname], Xte[spec.colname] = a, b, c
         pva, pte, it = MODELS[model](Xtr, y[tr_idx], Xva, y[va_idx], Xte, params=params, cat_cols=cat_cols)
         oof[va_idx] = pva
