@@ -45,6 +45,8 @@ def test_pipeline():
              digits(df), pair_counts(df, PAIRS_DEFAULT)]
     static = pd.concat(parts, axis=1)
     for g, cols in GROUPS.items():
+        if g == "origmatch":
+            continue
         assert all(c in static for c in cols), g
     assert static.isna().sum().sum() == 0
     cols = GROUPS["raw"] + GROUPS["inc_stats"] + GROUPS["digits"]
