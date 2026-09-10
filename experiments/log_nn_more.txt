@@ -1,0 +1,12 @@
+  nn_E9_s3 fold 0: auc 0.946253 iters 24 (19s)
+  nn_E9_s3 fold 1: auc 0.945959 iters 23 (36s)
+  nn_E9_s3 fold 2: auc 0.945803 iters 24 (53s)
+  nn_E9_s3 fold 3: auc 0.946700 iters 20 (70s)
+  nn_E9_s3 fold 4: auc 0.946629 iters 20 (87s)
+  nn_E9_s3 fold 5: auc 0.945835 iters 22 (105s)
+  nn_E9_s3 fold 6: auc 0.944145 iters 20 (122s)
+  nn_E9_s3 fold 7: auc 0.944137 iters 23 (139s)
+  nn_E9_s3 fold 8: auc 0.944944 iters 21 (156s)
+  nn_E9_s3 fold 9: auc 0.945817 iters 19 (174s)
+== nn_E9_s3: pooled OOF 0.945620 | folds 0.945622 ± 0.000875
+  nn_E9_s4 fold 0: auc 0.946190 iters 18 (18s)

@@ -1,0 +1,13 @@
+  xgb_m3_teseed0 fold 0: auc 0.946579 iters 786 (17s)
+  xgb_m3_teseed0 fold 1: auc 0.946438 iters 692 (33s)
+  xgb_m3_teseed0 fold 2: auc 0.946025 iters 744 (50s)
+  xgb_m3_teseed0 fold 3: auc 0.947033 iters 711 (66s)
+  xgb_m3_teseed0 fold 4: auc 0.946958 iters 820 (84s)
+  xgb_m3_teseed0 fold 5: auc 0.946395 iters 921 (104s)
+  xgb_m3_teseed0 fold 6: auc 0.944471 iters 1073 (125s)
+  xgb_m3_teseed0 fold 7: auc 0.944451 iters 933 (145s)
+  xgb_m3_teseed0 fold 8: auc 0.945456 iters 950 (165s)
+  xgb_m3_teseed0 fold 9: auc 0.946164 iters 771 (182s)
+  vs xgb_full: +0.000026 (se 0.000015, z +1.7)
+== xgb_m3_teseed0: pooled OOF 0.945987 | folds 0.945997 ± 0.000879
+  xgb_m3_teseed1 fold 0: auc 0.946621 iters 669 (17s)

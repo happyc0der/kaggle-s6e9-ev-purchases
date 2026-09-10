@@ -49,3 +49,5 @@
 2026-09-10 17:46,lgb_m3_teseed1,lgb,0.945987,45,10,lgb_full_temulti_m3,-0.000002,-0.08
 2026-09-10 17:50,lgb_m3_teseed2,lgb,0.945971,45,10,lgb_full_temulti_m3,-0.000017,-0.88
 bag,lgb_m3_tebag3,lgb,0.946055,0,10,lgb_full_temulti_m3,,
+2026-09-10 17:55,nn_E9_s3,nn,0.945620,45,10,,+nan,+nan
+2026-09-10 17:55,xgb_m3_teseed0,xgb,0.945987,45,10,xgb_full,+0.000026,+1.69

@@ -64,6 +64,7 @@ def nested_te(spec: TESpec, df_tr: pd.DataFrame, y: np.ndarray, tr_idx, va_idx, 
     inner_folds = inner_folds or spec.inner
     k_all = spec.key(df_tr)
     k_te = spec.key(df_te)
+    y_strat = y[tr_idx]
     if spec.resid:
         assert p_base is not None, "resid TE needs p_base"
         y = y - p_base[0]
@@ -71,7 +72,7 @@ def nested_te(spec: TESpec, df_tr: pd.DataFrame, y: np.ndarray, tr_idx, va_idx, 
     k_tr, y_tr = k_all[tr_idx], y[tr_idx]
     enc_tr = np.empty(len(tr_idx), dtype=np.float32)
     skf = StratifiedKFold(inner_folds, shuffle=True, random_state=seed)
-    for a, b in skf.split(np.zeros(len(tr_idx)), y_tr):
+    for a, b in skf.split(np.zeros(len(tr_idx)), y_strat):
         enc_tr[b] = te_fit_apply(k_tr[a], y_tr[a], k_tr[b], spec.m, prior)
     enc_va = te_fit_apply(k_tr, y_tr, k_all[va_idx], spec.m, prior)
     enc_te = te_fit_apply(k_tr, y_tr, k_te, spec.m, prior)
