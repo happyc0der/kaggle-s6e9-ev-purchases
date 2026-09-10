@@ -3,3 +3,7 @@
   lgb_raw fold 2: auc 0.942151 iters 1213 (69s)
   lgb_raw fold 3: auc 0.943205 iters 1293 (99s)
   lgb_raw fold 4: auc 0.942632 iters 1112 (124s)
+  lgb_raw fold 5: auc 0.942041 iters 953 (146s)
+  lgb_raw fold 6: auc 0.940357 iters 1217 (172s)
+  lgb_raw fold 7: auc 0.940091 iters 1080 (196s)
+  lgb_raw fold 8: auc 0.941588 iters 1060 (220s)

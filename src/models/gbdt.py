@@ -57,3 +57,11 @@ def fit_cb(Xtr, ytr, Xva, yva, Xte, params=None, rounds=20000, es=300, cat_cols=
 
 
 MODELS = {"lgb": fit_lgb, "xgb": fit_xgb, "cb": fit_cb}
+
+
+def _fit_nn(*a, **k):
+    from .nn import fit_nn
+    return fit_nn(*a, **k)
+
+
+MODELS["nn"] = _fit_nn
