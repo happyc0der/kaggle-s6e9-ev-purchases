@@ -7,3 +7,17 @@
   lgb_raw fold 6: auc 0.940357 iters 1217 (172s)
   lgb_raw fold 7: auc 0.940091 iters 1080 (196s)
   lgb_raw fold 8: auc 0.941588 iters 1060 (220s)
+  lgb_raw fold 9: auc 0.942519 iters 1198 (246s)
+== lgb_raw: pooled OOF 0.941913 | folds 0.941920 ± 0.000938
+  lgb_raw_noise fold 0: auc 0.942145 iters 1206 (26s)
+  lgb_raw_noise fold 1: auc 0.942384 iters 1173 (52s)
+  lgb_raw_noise fold 2: auc 0.942040 iters 953 (74s)
+  lgb_raw_noise fold 3: auc 0.943091 iters 877 (94s)
+  lgb_raw_noise fold 4: auc 0.942572 iters 951 (116s)
+  lgb_raw_noise fold 5: auc 0.942004 iters 910 (137s)
+  lgb_raw_noise fold 6: auc 0.940246 iters 1226 (164s)
+  lgb_raw_noise fold 7: auc 0.939969 iters 1095 (188s)
+  lgb_raw_noise fold 8: auc 0.941482 iters 991 (210s)
+  lgb_raw_noise fold 9: auc 0.942426 iters 1086 (234s)
+  vs lgb_raw: -0.000087 (se 0.000019, z -4.7)
+== lgb_raw_noise: pooled OOF 0.941826 | folds 0.941836 ± 0.000952
