@@ -1,0 +1,12 @@
+  xgb_full fold 0: auc 0.946569 iters 669 (19s)
+  xgb_full fold 1: auc 0.946465 iters 1068 (45s)
+  xgb_full fold 2: auc 0.946035 iters 879 (68s)
+  xgb_full fold 3: auc 0.946977 iters 865 (88s)
+  xgb_full fold 4: auc 0.946925 iters 883 (110s)
+  xgb_full fold 5: auc 0.946345 iters 958 (133s)
+  xgb_full fold 6: auc 0.944450 iters 1034 (157s)
+  xgb_full fold 7: auc 0.944421 iters 818 (177s)
+  xgb_full fold 8: auc 0.945408 iters 880 (199s)
+  xgb_full fold 9: auc 0.946096 iters 663 (216s)
+  vs lgb_full_temulti: +0.000016 (se 0.000018, z +0.9)
+== xgb_full: pooled OOF 0.945962 | folds 0.945969 ± 0.000879

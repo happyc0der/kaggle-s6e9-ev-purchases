@@ -31,3 +31,6 @@
 2026-09-10 16:51,nnsweep_E11_bins,nn,0.945869,48,2,,+nan,+nan
 2026-09-10 16:52,nnsweep_E12_bins250,nn,0.945873,48,2,,+nan,+nan
 2026-09-10 16:52,nnsweep_E13_freqemb,nn,0.945670,45,2,,+nan,+nan
+2026-09-10 16:54,lgb_full_teinter,lgb,0.945801,49,10,lgb_full_temulti,-0.000145,-5.62
+2026-09-10 16:55,nn_E9_s0,nn,0.945566,45,10,lgb_full_temulti,-0.000380,-9.57
+2026-09-10 16:58,xgb_full,xgb,0.945962,45,10,lgb_full_temulti,+0.000016,+0.89

@@ -34,6 +34,7 @@ class TESpec:
     decimals: int = 1
     binwidth: float | None = None  # if set, first column is binned by this width
     name: str = ""
+    inner: int = 5  # inner folds for the training-row encoding
 
     def key(self, df: pd.DataFrame) -> np.ndarray:
         if self.binwidth is None:
@@ -47,11 +48,13 @@ class TESpec:
         if self.name:
             return self.name
         b = f"_b{self.binwidth:g}" if self.binwidth else ""
-        return "te_" + "_".join(c[:6] for c in self.cols) + b + f"_m{self.m:g}"
+        i = f"_i{self.inner}" if self.inner != 5 else ""
+        return "te_" + "_".join(c[:6] for c in self.cols) + b + f"_m{self.m:g}" + i
 
 
 def nested_te(spec: TESpec, df_tr: pd.DataFrame, y: np.ndarray, tr_idx, va_idx, df_te: pd.DataFrame,
-              inner_folds=5, seed=0):
+              inner_folds=None, seed=0):
+    inner_folds = inner_folds or spec.inner
     """Returns (enc_train_rows[tr_idx order], enc_valid_rows, enc_test)."""
     k_all = spec.key(df_tr)
     k_te = spec.key(df_te)
