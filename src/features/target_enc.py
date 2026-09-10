@@ -37,8 +37,13 @@ class TESpec:
     inner: int = 5  # inner folds for the training-row encoding
     offset: float = 0.0  # shift applied before binning (half-width offset gives staggered bins)
     resid: bool = False  # encode mean(y - p_base) instead of mean(y); p_base supplied by the runner
+    modulus: float | None = None  # if set, first column is replaced by (col mod modulus) before keying
 
     def key(self, df: pd.DataFrame) -> np.ndarray:
+        if self.modulus is not None:
+            d = df[list(self.cols)].copy()
+            d[self.cols[0]] = np.round(d[self.cols[0]]).astype(np.int64) % int(self.modulus)
+            return make_key(d, self.cols, 0)
         if self.binwidth is None:
             return make_key(df, self.cols, self.decimals)
         d = df[list(self.cols)].copy()
@@ -53,6 +58,7 @@ class TESpec:
         i = f"_i{self.inner}" if self.inner != 5 else ""
         i += f"_o{self.offset:g}" if self.offset else ""
         i += "_r" if self.resid else ""
+        i += f"_mod{self.modulus:g}" if self.modulus else ""
         return "te_" + "_".join(c[:6] for c in self.cols) + b + f"_m{self.m:g}" + i
 
 

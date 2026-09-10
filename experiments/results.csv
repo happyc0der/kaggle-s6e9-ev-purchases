@@ -60,3 +60,4 @@ bag,nn_E9_avg5,nn,0.945728,0,10,nn_E9_avg3,,
 bag,xgb_m3_tebag3,xgb,0.946051,0,10,xgb_full,,
 2026-09-10 18:04,nn_E9_rawte,nn,0.945378,20,10,nn_E9_s0,-0.000188,-7.58
 2026-09-10 18:07,lgb_m3_resid_only,lgb,0.945555,45,10,lgb_full_temulti_m3,-0.000433,-11.56
+2026-09-10 18:09,nnsweep_P16,nn,0.946027,45,2,,+nan,+nan
