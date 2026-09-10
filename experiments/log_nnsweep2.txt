@@ -1,0 +1,9 @@
+  nnsweep_E_noemb fold 0: auc 0.945834 iters 17 (17s)
+  nnsweep_E_noemb fold 1: auc 0.945278 iters 18 (33s)
+== nnsweep_E_noemb: pooled OOF 0.945558 | folds 0.945556 ± 0.000278
+  nnsweep_F_reg2 fold 0: auc 0.945557 iters 19 (19s)
+  nnsweep_F_reg2 fold 1: auc 0.945014 iters 6 (29s)
+== nnsweep_F_reg2: pooled OOF 0.945218 | folds 0.945286 ± 0.000272
+REF nn_full 0.9450415375154604 0.9444692432786614  LGB 0.9466195786481859 0.9464373482047186
+E_noemb {0: 0.9458343222567773, 1: 0.945277716995679}
+F_reg2 {0: 0.9455574536899963, 1: 0.9450136646222708}

@@ -1,0 +1,32 @@
+  nnsweep_A_reg fold 0: auc 0.945272 iters 9 (15s)
+  nnsweep_A_reg fold 1: auc 0.944612 iters 12 (27s)
+== nnsweep_A_reg: pooled OOF 0.944915 | folds 0.944942 ± 0.000330
+  nnsweep_B_small fold 0: auc 0.945405 iters 10 (13s)
+  nnsweep_B_small fold 1: auc 0.944663 iters 6 (23s)
+== nnsweep_B_small: pooled OOF 0.944993 | folds 0.945034 ± 0.000371
+  nnsweep_C_slow fold 0: auc 0.944843 iters 4 (24s)
+  nnsweep_C_slow fold 1: auc 0.944498 iters 4 (44s)
+== nnsweep_C_slow: pooled OOF 0.944617 | folds 0.944671 ± 0.000173
+  nnsweep_D_narrow fold 0: auc 0.945211 iters 7 (7s)
+  nnsweep_D_narrow fold 1: auc 0.944708 iters 16 (18s)
+== nnsweep_D_narrow: pooled OOF 0.944933 | folds 0.944960 ± 0.000251
+Traceback (most recent call last):
+  File "/Users/happyc0der/Projects/kaggle-s6e9/scripts_nnsweep.py", line 21, in <module>
+    m = run(f"nnsweep_{k}", full, te_specs=te_multi, model="nn", params=p, static_version="v2", folds_subset=[0, 1])
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/happyc0der/Projects/kaggle-s6e9/src/cv.py", line 82, in run
+    pva, pte, it = MODELS[model](Xtr, y[tr_idx], Xva, y[va_idx], Xte, params=params, cat_cols=cat_cols)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/happyc0der/Projects/kaggle-s6e9/src/models/gbdt.py", line 64, in _fit_nn
+    return fit_nn(*a, **k)
+           ^^^^^^^^^^^^^^^
+  File "/Users/happyc0der/Projects/kaggle-s6e9/src/models/nn.py", line 79, in fit_nn
+    T = [tens(X, n) for X, n in zip((Xtr, Xva, Xte), nums)]
+         ^^^^^^^^^^
+  File "/Users/happyc0der/Projects/kaggle-s6e9/src/models/nn.py", line 77, in tens
+    torch.tensor(_ids(X[INC].to_numpy(float), v_inc)), torch.tensor(_ids(X[COM].to_numpy(float), v_com)))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/happyc0der/Projects/kaggle-s6e9/src/models/nn.py", line 49, in _ids
+    return np.where(vocab[idx_c] == k, idx_c + 1, 0).astype(np.int64)
+                    ~~~~~^^^^^^^
+IndexError: index -1 is out of bounds for axis 0 with size 0

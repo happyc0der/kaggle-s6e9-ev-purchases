@@ -35,3 +35,14 @@
   vs lgb_full_temulti: +0.000002 (se 0.000014, z +0.2)
 == lgb_full_temulti_bin4k: pooled OOF 0.945948 | folds 0.945956 ± 0.000883
   lgb_full_temulti_m3 fold 0: auc 0.946664 iters 665 (20s)
+  lgb_full_temulti_m3 fold 1: auc 0.946371 iters 939 (46s)
+  lgb_full_temulti_m3 fold 2: auc 0.946054 iters 679 (66s)
+  lgb_full_temulti_m3 fold 3: auc 0.947018 iters 831 (90s)
+  lgb_full_temulti_m3 fold 4: auc 0.946887 iters 673 (110s)
+  lgb_full_temulti_m3 fold 5: auc 0.946378 iters 1201 (140s)
+  lgb_full_temulti_m3 fold 6: auc 0.944520 iters 1138 (169s)
+  lgb_full_temulti_m3 fold 7: auc 0.944502 iters 721 (190s)
+  lgb_full_temulti_m3 fold 8: auc 0.945458 iters 1263 (221s)
+  lgb_full_temulti_m3 fold 9: auc 0.946130 iters 632 (241s)
+  vs lgb_full_temulti: +0.000042 (se 0.000017, z +2.5)
+== lgb_full_temulti_m3: pooled OOF 0.945988 | folds 0.945998 ± 0.000854

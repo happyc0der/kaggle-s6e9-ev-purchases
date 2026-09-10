@@ -12,7 +12,7 @@ from ..config import CAT_COLS
 INC, COM = "Annual_Income_USD", "Daily_Commute_km"
 DEV = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
 
-NN_DEFAULT = dict(epochs=14, bs=4096, lr=2e-3, wd=1e-5, hidden=(512, 256, 128), drop=0.15, emb_inc=24, emb_com=12,
+NN_DEFAULT = dict(extra_cats=(), epochs=14, bs=4096, lr=2e-3, wd=1e-5, hidden=(512, 256, 128), drop=0.15, emb_inc=24, emb_com=12,
                   emb_cat=4, min_count=3, seed=0, patience=4)
 
 
@@ -44,6 +44,8 @@ def _vocab(values_all: np.ndarray, min_count: int):
 
 def _ids(values: np.ndarray, vocab: np.ndarray):
     k = np.round(values * 10).astype(np.int64)
+    if len(vocab) == 0:
+        return np.zeros(len(k), dtype=np.int64)
     idx = np.searchsorted(vocab, k)
     idx_c = np.minimum(idx, len(vocab) - 1)
     return np.where(vocab[idx_c] == k, idx_c + 1, 0).astype(np.int64)
@@ -64,7 +66,7 @@ def _prep_num(Xtr: pd.DataFrame, others, num_cols):
 def fit_nn(Xtr, ytr, Xva, yva, Xte, params=None, cat_cols=None):
     p = {**NN_DEFAULT, **(params or {})}
     torch.manual_seed(p["seed"]); np.random.seed(p["seed"])
-    cats = [c for c in CAT_COLS if c in Xtr.columns]
+    cats = [c for c in CAT_COLS + list(p.get("extra_cats", ())) if c in Xtr.columns]
     num_cols = [c for c in Xtr.columns if c not in cats]
     all_inc = np.concatenate([X[INC].to_numpy(float) for X in (Xtr, Xva, Xte)])
     all_com = np.concatenate([X[COM].to_numpy(float) for X in (Xtr, Xva, Xte)])

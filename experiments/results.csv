@@ -11,3 +11,11 @@
 2026-09-10 16:28,lgb_full_temulti,lgb,0.945946,45,10,lgb_stats_temulti,+0.000057,+3.53
 2026-09-10 16:31,lgb_full_temulti_ompair,lgb,0.945934,46,10,lgb_full_temulti,-0.000012,-0.81
 2026-09-10 16:36,lgb_full_temulti_bin4k,lgb,0.945948,45,10,lgb_full_temulti,+0.000002,+0.15
+2026-09-10 16:40,lgb_full_temulti_m3,lgb,0.945988,45,10,lgb_full_temulti,+0.000042,+2.49
+2026-09-10 16:41,nn_full,nn,0.944052,45,10,lgb_full_temulti,-0.001894,-30.14
+2026-09-10 16:42,nnsweep_A_reg,nn,0.944915,45,2,,+nan,+nan
+2026-09-10 16:42,nnsweep_B_small,nn,0.944993,45,2,,+nan,+nan
+2026-09-10 16:43,nnsweep_C_slow,nn,0.944617,45,2,,+nan,+nan
+2026-09-10 16:43,nnsweep_D_narrow,nn,0.944933,45,2,,+nan,+nan
+2026-09-10 16:44,nnsweep_E_noemb,nn,0.945558,45,2,,+nan,+nan
+2026-09-10 16:45,nnsweep_F_reg2,nn,0.945218,45,2,,+nan,+nan
