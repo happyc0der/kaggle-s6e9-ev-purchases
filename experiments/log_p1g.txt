@@ -1,0 +1,21 @@
+Traceback (most recent call last):
+  File "/Users/happyc0der/Projects/kaggle-s6e9/scripts_phase1g.py", line 12, in <module>
+    run("lgb_m3_resid_both", full, te_specs=temulti(3) + temulti(3, resid=True), static_version="v2", ref=REF)
+  File "/Users/happyc0der/Projects/kaggle-s6e9/src/cv.py", line 87, in run
+    a, b, c = nested_te(spec, df_tr_raw, y, tr_idx, va_idx, df_te_raw, seed=seed_te, p_base=p_base)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/happyc0der/Projects/kaggle-s6e9/src/features/target_enc.py", line 74, in nested_te
+    for a, b in skf.split(np.zeros(len(tr_idx)), y_tr):
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/happyc0der/Projects/kaggle-s6e9/.venv/lib/python3.12/site-packages/sklearn/model_selection/_split.py", line 411, in split
+    for train, test in super().split(X, y, groups):
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/happyc0der/Projects/kaggle-s6e9/.venv/lib/python3.12/site-packages/sklearn/model_selection/_split.py", line 142, in split
+    for test_index in self._iter_test_masks(X, y, groups):
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/happyc0der/Projects/kaggle-s6e9/.venv/lib/python3.12/site-packages/sklearn/model_selection/_split.py", line 845, in _iter_test_masks
+    test_folds = self._make_test_folds(X, y)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/happyc0der/Projects/kaggle-s6e9/.venv/lib/python3.12/site-packages/sklearn/model_selection/_split.py", line 788, in _make_test_folds
+    raise ValueError(
+ValueError: Supported target types are: ('binary', 'multiclass'). Got 'continuous' instead.

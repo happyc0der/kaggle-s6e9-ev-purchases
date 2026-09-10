@@ -46,3 +46,6 @@
 2026-09-10 17:34,lgb_m3_nativecat,lgb,0.943311,47,10,lgb_full_temulti_m3,-0.002677,-37.20
 2026-09-10 17:38,lgb_m1,lgb,0.945989,45,10,lgb_full_temulti_m3,+0.000001,+0.05
 2026-09-10 17:42,lgb_m3_stag,lgb,0.945966,50,10,lgb_full_temulti_m3,-0.000022,-1.37
+2026-09-10 17:46,lgb_m3_teseed1,lgb,0.945987,45,10,lgb_full_temulti_m3,-0.000002,-0.08
+2026-09-10 17:50,lgb_m3_teseed2,lgb,0.945971,45,10,lgb_full_temulti_m3,-0.000017,-0.88
+bag,lgb_m3_tebag3,lgb,0.946055,0,10,lgb_full_temulti_m3,,
