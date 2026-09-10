@@ -68,3 +68,17 @@
   lgb_stats_te_pairs fold 7: auc 0.944152 iters 1062 (186s)
   lgb_stats_te_pairs fold 8: auc 0.945058 iters 1085 (213s)
   lgb_stats_te_pairs fold 9: auc 0.945782 iters 776 (234s)
+  vs lgb_stats_te: -0.000078 (se 0.000020, z -3.9)
+== lgb_stats_te_pairs: pooled OOF 0.945550 | folds 0.945557 ± 0.000874
+  lgb_stats_temulti fold 0: auc 0.946582 iters 767 (21s)
+  lgb_stats_temulti fold 1: auc 0.946382 iters 693 (41s)
+  lgb_stats_temulti fold 2: auc 0.945916 iters 720 (61s)
+  lgb_stats_temulti fold 3: auc 0.946898 iters 643 (80s)
+  lgb_stats_temulti fold 4: auc 0.946871 iters 665 (100s)
+  lgb_stats_temulti fold 5: auc 0.946216 iters 749 (120s)
+  lgb_stats_temulti fold 6: auc 0.944386 iters 770 (142s)
+  lgb_stats_temulti fold 7: auc 0.944356 iters 736 (162s)
+  lgb_stats_temulti fold 8: auc 0.945327 iters 1007 (187s)
+  lgb_stats_temulti fold 9: auc 0.946037 iters 649 (207s)
+  vs lgb_stats_te: +0.000260 (se 0.000029, z +8.8)
+== lgb_stats_temulti: pooled OOF 0.945888 | folds 0.945897 ± 0.000881
