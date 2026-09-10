@@ -1,0 +1,12 @@
+  nn_E9_s2 fold 0: auc 0.946193 iters 17 (20s)
+  nn_E9_s2 fold 1: auc 0.945877 iters 22 (37s)
+  nn_E9_s2 fold 2: auc 0.945731 iters 19 (54s)
+  nn_E9_s2 fold 3: auc 0.946696 iters 22 (73s)
+  nn_E9_s2 fold 4: auc 0.946463 iters 20 (90s)
+  nn_E9_s2 fold 5: auc 0.945767 iters 23 (107s)
+  nn_E9_s2 fold 6: auc 0.944068 iters 24 (125s)
+  nn_E9_s2 fold 7: auc 0.944020 iters 20 (142s)
+  nn_E9_s2 fold 8: auc 0.944874 iters 24 (159s)
+  nn_E9_s2 fold 9: auc 0.945702 iters 24 (177s)
+  vs lgb_full_temulti: -0.000415 (se 0.000040, z -10.4)
+== nn_E9_s2: pooled OOF 0.945531 | folds 0.945539 ± 0.000881

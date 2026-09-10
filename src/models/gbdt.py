@@ -22,6 +22,11 @@ def fit_lgb(Xtr, ytr, Xva, yva, Xte, params=None, rounds=20000, es=300, cat_cols
     import lightgbm as lgb
 
     p = {**LGB_DEFAULT, **(params or {})}
+    if cat_cols:
+        Xtr, Xva, Xte = (x.copy() for x in (Xtr, Xva, Xte))
+        for c in cat_cols:
+            for x in (Xtr, Xva, Xte):
+                x[c] = np.round(x[c].to_numpy(float) * 10).astype(np.int64)
     dtr = lgb.Dataset(Xtr, ytr, categorical_feature=cat_cols or "auto", free_raw_data=False)
     dva = lgb.Dataset(Xva, yva, reference=dtr, categorical_feature=cat_cols or "auto")
     m = lgb.train(p, dtr, rounds, valid_sets=[dva], callbacks=[lgb.early_stopping(es, verbose=False)])

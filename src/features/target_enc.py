@@ -35,12 +35,13 @@ class TESpec:
     binwidth: float | None = None  # if set, first column is binned by this width
     name: str = ""
     inner: int = 5  # inner folds for the training-row encoding
+    offset: float = 0.0  # shift applied before binning (half-width offset gives staggered bins)
 
     def key(self, df: pd.DataFrame) -> np.ndarray:
         if self.binwidth is None:
             return make_key(df, self.cols, self.decimals)
         d = df[list(self.cols)].copy()
-        d[self.cols[0]] = np.floor(d[self.cols[0]] / self.binwidth)
+        d[self.cols[0]] = np.floor((d[self.cols[0]] + self.offset) / self.binwidth)
         return make_key(d, self.cols, 0)
 
     @property
@@ -49,6 +50,7 @@ class TESpec:
             return self.name
         b = f"_b{self.binwidth:g}" if self.binwidth else ""
         i = f"_i{self.inner}" if self.inner != 5 else ""
+        i += f"_o{self.offset:g}" if self.offset else ""
         return "te_" + "_".join(c[:6] for c in self.cols) + b + f"_m{self.m:g}" + i
 
 
