@@ -1,0 +1,25 @@
+  nnsweep_E1_reg fold 0: auc 0.945906 iters 22 (21s)
+  nnsweep_E1_reg fold 1: auc 0.945359 iters 24 (39s)
+== nnsweep_E1_reg: pooled OOF 0.945620 | folds 0.945632 ± 0.000273
+  nnsweep_E2_wide fold 0: auc 0.945868 iters 19 (30s)
+  nnsweep_E2_wide fold 1: auc 0.945292 iters 18 (58s)
+== nnsweep_E2_wide: pooled OOF 0.945575 | folds 0.945580 ± 0.000288
+  nnsweep_E3_slow fold 0: auc 0.945808 iters 26 (21s)
+  nnsweep_E3_slow fold 1: auc 0.945217 iters 24 (42s)
+== nnsweep_E3_slow: pooled OOF 0.945516 | folds 0.945512 ± 0.000295
+  nnsweep_E6_bigbs fold 0: auc 0.945831 iters 17 (14s)
+  nnsweep_E6_bigbs fold 1: auc 0.945246 iters 12 (25s)
+== nnsweep_E6_bigbs: pooled OOF 0.945526 | folds 0.945538 ± 0.000292
+  nnsweep_E7_cats fold 0: auc 0.945860 iters 13 (15s)
+  nnsweep_E7_cats fold 1: auc 0.945554 iters 12 (30s)
+== nnsweep_E7_cats: pooled OOF 0.945709 | folds 0.945707 ± 0.000153
+  nnsweep_E8_cats_reg fold 0: auc 0.946125 iters 24 (20s)
+  nnsweep_E8_cats_reg fold 1: auc 0.945818 iters 24 (40s)
+== nnsweep_E8_cats_reg: pooled OOF 0.945974 | folds 0.945971 ± 0.000153
+REF E_noemb {'0': 0.9458343222567773, '1': 0.945277716995679}
+E1_reg {0: 0.945905514969685, 1: 0.9453589974181762}
+E2_wide {0: 0.9458677320247916, 1: 0.9452923966573616}
+E3_slow {0: 0.9458075409122606, 1: 0.9452174118407496}
+E6_bigbs {0: 0.9458306472986655, 1: 0.9452462048311148}
+E7_cats {0: 0.9458598980102226, 1: 0.9455539587171669}
+E8_cats_reg {0: 0.946124516716631, 1: 0.9458175409566053}

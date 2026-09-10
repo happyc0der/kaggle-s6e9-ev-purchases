@@ -19,3 +19,15 @@
 2026-09-10 16:43,nnsweep_D_narrow,nn,0.944933,45,2,,+nan,+nan
 2026-09-10 16:44,nnsweep_E_noemb,nn,0.945558,45,2,,+nan,+nan
 2026-09-10 16:45,nnsweep_F_reg2,nn,0.945218,45,2,,+nan,+nan
+2026-09-10 16:46,nnsweep_E1_reg,nn,0.945620,45,2,,+nan,+nan
+2026-09-10 16:47,nnsweep_E2_wide,nn,0.945575,45,2,,+nan,+nan
+2026-09-10 16:47,nnsweep_E3_slow,nn,0.945516,45,2,,+nan,+nan
+2026-09-10 16:48,nnsweep_E6_bigbs,nn,0.945526,45,2,,+nan,+nan
+2026-09-10 16:48,nnsweep_E7_cats,nn,0.945709,45,2,,+nan,+nan
+2026-09-10 16:49,nnsweep_E8_cats_reg,nn,0.945974,45,2,,+nan,+nan
+2026-09-10 16:49,cb_full_cat,cb,0.944630,40,10,lgb_full_temulti,-0.001316,-24.65
+2026-09-10 16:50,nnsweep_E9_morereg,nn,0.946014,45,2,,+nan,+nan
+2026-09-10 16:51,nnsweep_E10_long,nn,0.946002,45,2,,+nan,+nan
+2026-09-10 16:51,nnsweep_E11_bins,nn,0.945869,48,2,,+nan,+nan
+2026-09-10 16:52,nnsweep_E12_bins250,nn,0.945873,48,2,,+nan,+nan
+2026-09-10 16:52,nnsweep_E13_freqemb,nn,0.945670,45,2,,+nan,+nan

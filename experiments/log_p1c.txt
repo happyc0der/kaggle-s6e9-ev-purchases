@@ -1,0 +1,6 @@
+  lgb_full_teinter fold 0: auc 0.946523 iters 629 (23s)
+  lgb_full_teinter fold 1: auc 0.946097 iters 778 (48s)
+  lgb_full_teinter fold 2: auc 0.945879 iters 836 (75s)
+  lgb_full_teinter fold 3: auc 0.946825 iters 972 (105s)
+  lgb_full_teinter fold 4: auc 0.946761 iters 987 (135s)
+  lgb_full_teinter fold 5: auc 0.946131 iters 629 (157s)

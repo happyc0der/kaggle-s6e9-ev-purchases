@@ -15,3 +15,8 @@
   cb_full_cat fold 2: auc 0.944810 iters 266 (148s)
   cb_full_cat fold 3: auc 0.945669 iters 264 (200s)
   cb_full_cat fold 4: auc 0.945653 iters 237 (248s)
+  cb_full_cat fold 5: auc 0.944798 iters 244 (299s)
+  cb_full_cat fold 6: auc 0.942869 iters 271 (351s)
+  cb_full_cat fold 7: auc 0.943228 iters 272 (403s)
+  cb_full_cat fold 8: auc 0.943957 iters 266 (456s)
+  cb_full_cat fold 9: auc 0.944997 iters 260 (503s)

@@ -1,0 +1,21 @@
+  nnsweep_E9_morereg fold 0: auc 0.946165 iters 18 (18s)
+  nnsweep_E9_morereg fold 1: auc 0.945856 iters 24 (35s)
+== nnsweep_E9_morereg: pooled OOF 0.946014 | folds 0.946011 ± 0.000155
+  nnsweep_E10_long fold 0: auc 0.946112 iters 16 (17s)
+  nnsweep_E10_long fold 1: auc 0.945908 iters 17 (35s)
+== nnsweep_E10_long: pooled OOF 0.946002 | folds 0.946010 ± 0.000102
+  nnsweep_E11_bins fold 0: auc 0.946027 iters 13 (14s)
+  nnsweep_E11_bins fold 1: auc 0.945708 iters 24 (33s)
+== nnsweep_E11_bins: pooled OOF 0.945869 | folds 0.945867 ± 0.000160
+  nnsweep_E12_bins250 fold 0: auc 0.946088 iters 13 (15s)
+  nnsweep_E12_bins250 fold 1: auc 0.945665 iters 13 (30s)
+== nnsweep_E12_bins250: pooled OOF 0.945873 | folds 0.945877 ± 0.000211
+  nnsweep_E13_freqemb fold 0: auc 0.945924 iters 13 (14s)
+  nnsweep_E13_freqemb fold 1: auc 0.945530 iters 13 (28s)
+== nnsweep_E13_freqemb: pooled OOF 0.945670 | folds 0.945727 ± 0.000197
+REF E8 {'0': 0.946124516716631, '1': 0.9458175409566053}
+E9_morereg {0: 0.9461652849346537, 1: 0.9458561695220056}
+E10_long {0: 0.9461118735263531, 1: 0.9459083419798934}
+E11_bins {0: 0.9460272113976264, 1: 0.945707787948577}
+E12_bins250 {0: 0.9460877756692985, 1: 0.9456652718562405}
+E13_freqemb {0: 0.945923699689579, 1: 0.9455300486033809}
