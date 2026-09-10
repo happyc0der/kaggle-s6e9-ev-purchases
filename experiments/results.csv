@@ -37,3 +37,7 @@
 2026-09-10 16:59,lgb_full_tebininter,lgb,0.945872,48,10,lgb_full_temulti,-0.000074,-3.11
 2026-09-10 17:01,nn_E9_s1,nn,0.945536,45,10,lgb_full_temulti,-0.000410,-10.23
 2026-09-10 17:04,nn_E9_s2,nn,0.945531,45,10,lgb_full_temulti,-0.000415,-10.40
+2026-09-10 17:08,lgb_full_temulti_tuneA,lgb,0.945866,45,10,lgb_full_temulti,-0.000079,-4.61
+2026-09-10 17:15,lgb_full_temulti_tuneB,lgb,0.945987,45,10,lgb_full_temulti,+0.000042,+2.70
+2026-09-10 17:19,lgb_m3_inner20,lgb,0.945984,45,10,lgb_full_temulti_m3,-0.000004,-0.23
+2026-09-10 17:23,lgb_m3_inccom,lgb,0.945982,46,10,lgb_full_temulti_m3,-0.000006,-0.38

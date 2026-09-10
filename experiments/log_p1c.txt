@@ -31,3 +31,18 @@
   lgb_full_temulti_tuneA fold 6: auc 0.944338 iters 1661 (392s)
   lgb_full_temulti_tuneA fold 7: auc 0.944391 iters 1289 (450s)
   lgb_full_temulti_tuneA fold 8: auc 0.945287 iters 1292 (507s)
+  lgb_full_temulti_tuneA fold 9: auc 0.945992 iters 1119 (558s)
+  vs lgb_full_temulti: -0.000079 (se 0.000017, z -4.6)
+== lgb_full_temulti_tuneA: pooled OOF 0.945866 | folds 0.945895 ± 0.000883
+  lgb_full_temulti_tuneB fold 0: auc 0.946682 iters 2336 (35s)
+  lgb_full_temulti_tuneB fold 1: auc 0.946410 iters 3361 (83s)
+  lgb_full_temulti_tuneB fold 2: auc 0.946057 iters 2853 (124s)
+  lgb_full_temulti_tuneB fold 3: auc 0.946907 iters 1926 (155s)
+  lgb_full_temulti_tuneB fold 4: auc 0.946934 iters 2414 (191s)
+  lgb_full_temulti_tuneB fold 5: auc 0.946309 iters 2663 (230s)
+  lgb_full_temulti_tuneB fold 6: auc 0.944537 iters 3235 (276s)
+  lgb_full_temulti_tuneB fold 7: auc 0.944503 iters 2182 (310s)
+  lgb_full_temulti_tuneB fold 8: auc 0.945530 iters 3804 (362s)
+  lgb_full_temulti_tuneB fold 9: auc 0.946088 iters 2071 (396s)
+  vs lgb_full_temulti: +0.000042 (se 0.000015, z +2.7)
+== lgb_full_temulti_tuneB: pooled OOF 0.945987 | folds 0.945996 ± 0.000839
