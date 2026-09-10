@@ -12,7 +12,7 @@ from ..config import CAT_COLS
 INC, COM = "Annual_Income_USD", "Daily_Commute_km"
 DEV = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
 
-NN_DEFAULT = dict(extra_cats=(), epochs=14, bs=4096, lr=2e-3, wd=1e-5, hidden=(512, 256, 128), drop=0.15, emb_inc=24, emb_com=12,
+NN_DEFAULT = dict(extra_cats=(), ple_bins=0, epochs=14, bs=4096, lr=2e-3, wd=1e-5, hidden=(512, 256, 128), drop=0.15, emb_inc=24, emb_com=12,
                   emb_cat=4, min_count=3, seed=0, patience=4)
 
 
@@ -51,7 +51,7 @@ def _ids(values: np.ndarray, vocab: np.ndarray):
     return np.where(vocab[idx_c] == k, idx_c + 1, 0).astype(np.int64)
 
 
-def _prep_num(Xtr: pd.DataFrame, others, num_cols):
+def _prep_num(Xtr: pd.DataFrame, others, num_cols, ple_bins=0):
     A = Xtr[num_cols].to_numpy(np.float32)
     logmask = (A.min(0) >= 0) & (A.max(0) > 50)
     def tf(X):
@@ -60,7 +60,24 @@ def _prep_num(Xtr: pd.DataFrame, others, num_cols):
         return B
     A = tf(Xtr)
     mu, sd = A.mean(0), A.std(0) + 1e-6
-    return [(tf(X) - mu) / sd for X in (Xtr, *others)]
+    outs = [(tf(X) - mu) / sd for X in (Xtr, *others)]
+    if ple_bins:
+        # piecewise-linear encoding (Gorishniy et al. 2022): per feature, quantile bin edges from train,
+        # value -> vector of per-bin fill fractions in [0,1]; concatenated to the standardized numerics
+        qs = np.linspace(0, 1, ple_bins + 1)[1:-1]
+        edges = [np.unique(np.quantile(A[:, j], qs)) for j in range(A.shape[1])]
+        def ple(B):
+            parts = []
+            for j, e in enumerate(edges):
+                if len(e) < 2:
+                    continue
+                lo = np.concatenate([[B[:, j].min() - 1], e]); hi = np.concatenate([e, [B[:, j].max() + 1]])
+                v = (B[:, j][:, None] - lo[None, :]) / (hi - lo)[None, :]
+                parts.append(np.clip(v, 0, 1).astype(np.float32))
+            return np.concatenate(parts, 1)
+        raw = [tf(X) for X in (Xtr, *others)]
+        outs = [np.concatenate([o, ple(r)], 1) for o, r in zip(outs, raw)]
+    return outs
 
 
 def fit_nn(Xtr, ytr, Xva, yva, Xte, params=None, cat_cols=None):
@@ -71,7 +88,7 @@ def fit_nn(Xtr, ytr, Xva, yva, Xte, params=None, cat_cols=None):
     all_inc = np.concatenate([X[INC].to_numpy(float) for X in (Xtr, Xva, Xte)])
     all_com = np.concatenate([X[COM].to_numpy(float) for X in (Xtr, Xva, Xte)])
     v_inc, v_com = _vocab(all_inc, p["min_count"]), _vocab(all_com, p["min_count"])
-    nums = _prep_num(Xtr, (Xva, Xte), num_cols)
+    nums = _prep_num(Xtr, (Xva, Xte), num_cols, p["ple_bins"])
     cat_cards = [int(max(X[c].max() for X in (Xtr, Xva, Xte))) + 1 for c in cats]
 
     def tens(X, num):
@@ -81,7 +98,7 @@ def fit_nn(Xtr, ytr, Xva, yva, Xte, params=None, cat_cols=None):
     T = [tens(X, n) for X, n in zip((Xtr, Xva, Xte), nums)]
     T = [[t.to(DEV) for t in ts] for ts in T]
     ytr_t = torch.tensor(ytr, dtype=torch.float32, device=DEV)
-    net = Net(len(num_cols), cat_cards, p["emb_cat"], len(v_inc) + 1, p["emb_inc"], len(v_com) + 1, p["emb_com"],
+    net = Net(nums[0].shape[1], cat_cards, p["emb_cat"], len(v_inc) + 1, p["emb_inc"], len(v_com) + 1, p["emb_com"],
               p["hidden"], p["drop"]).to(DEV)
     opt = torch.optim.AdamW(net.parameters(), lr=p["lr"], weight_decay=p["wd"])
     n = len(ytr); steps = (n + p["bs"] - 1) // p["bs"]

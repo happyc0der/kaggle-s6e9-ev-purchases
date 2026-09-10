@@ -11,3 +11,27 @@
   vs xgb_full: +0.000026 (se 0.000015, z +1.7)
 == xgb_m3_teseed0: pooled OOF 0.945987 | folds 0.945997 ± 0.000879
   xgb_m3_teseed1 fold 0: auc 0.946621 iters 669 (17s)
+  xgb_m3_teseed1 fold 1: auc 0.946376 iters 934 (42s)
+  xgb_m3_teseed1 fold 2: auc 0.946097 iters 899 (69s)
+  xgb_m3_teseed1 fold 3: auc 0.947052 iters 657 (89s)
+  xgb_m3_teseed1 fold 4: auc 0.946893 iters 797 (113s)
+  xgb_m3_teseed1 fold 5: auc 0.946309 iters 999 (140s)
+  xgb_m3_teseed1 fold 6: auc 0.944460 iters 1215 (172s)
+  xgb_m3_teseed1 fold 7: auc 0.944513 iters 930 (198s)
+  xgb_m3_teseed1 fold 8: auc 0.945518 iters 1116 (227s)
+  xgb_m3_teseed1 fold 9: auc 0.946153 iters 723 (249s)
+  vs xgb_full: +0.000026 (se 0.000020, z +1.3)
+== xgb_m3_teseed1: pooled OOF 0.945988 | folds 0.945999 ± 0.000859
+  xgb_m3_teseed2 fold 0: auc 0.946592 iters 953 (26s)
+  xgb_m3_teseed2 fold 1: auc 0.946378 iters 691 (47s)
+  xgb_m3_teseed2 fold 2: auc 0.946072 iters 881 (71s)
+  xgb_m3_teseed2 fold 3: auc 0.947040 iters 786 (94s)
+  xgb_m3_teseed2 fold 4: auc 0.946969 iters 775 (116s)
+  xgb_m3_teseed2 fold 5: auc 0.946379 iters 1000 (142s)
+  xgb_m3_teseed2 fold 6: auc 0.944427 iters 900 (166s)
+  xgb_m3_teseed2 fold 7: auc 0.944485 iters 952 (192s)
+  xgb_m3_teseed2 fold 8: auc 0.945387 iters 916 (216s)
+  xgb_m3_teseed2 fold 9: auc 0.946184 iters 887 (239s)
+  vs xgb_full: +0.000022 (se 0.000021, z +1.1)
+== xgb_m3_teseed2: pooled OOF 0.945984 | folds 0.945991 ± 0.000885
+xgb TE-seed bag of 3: 0.946051
