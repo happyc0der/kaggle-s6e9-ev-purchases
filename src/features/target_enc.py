@@ -44,6 +44,7 @@ class TESpec:
     offset: float = 0.0  # shift applied before binning (half-width offset gives staggered bins)
     resid: bool = False  # encode mean(y - p_base) instead of mean(y); p_base supplied by the runner
     modulus: float | None = None  # if set, first column is replaced by (col mod modulus) before keying
+    nbag: int = 1  # >1: average the training-row encoding over nbag different inner-fold seeds (variance reduction)
 
     def key(self, df: pd.DataFrame) -> np.ndarray:
         if self.modulus is not None:
@@ -65,6 +66,7 @@ class TESpec:
         i += f"_o{self.offset:g}" if self.offset else ""
         i += "_r" if self.resid else ""
         i += f"_mod{self.modulus:g}" if self.modulus else ""
+        i += f"_bag{self.nbag}" if self.nbag > 1 else ""
         return "te_" + "_".join(c[:6] for c in self.cols) + b + f"_m{self.m:g}" + i
 
 
@@ -82,10 +84,12 @@ def nested_te(spec: TESpec, df_tr: pd.DataFrame, y: np.ndarray, tr_idx, va_idx, 
         y = y - p_base[0]
     prior = float(y[tr_idx].mean())
     k_tr, y_tr = k_all[tr_idx], y[tr_idx]
-    enc_tr = np.empty(len(tr_idx), dtype=np.float32)
-    skf = StratifiedKFold(inner_folds, shuffle=True, random_state=seed)
-    for a, b in skf.split(np.zeros(len(tr_idx)), y_strat):
-        enc_tr[b] = te_fit_apply(k_tr[a], y_tr[a], k_tr[b], spec.m, prior)
+    enc_tr = np.zeros(len(tr_idx), dtype=np.float32)
+    nbag = max(1, getattr(spec, "nbag", 1))
+    for r in range(nbag):
+        skf = StratifiedKFold(inner_folds, shuffle=True, random_state=seed + 1000 * r)
+        for a, b in skf.split(np.zeros(len(tr_idx)), y_strat):
+            enc_tr[b] += te_fit_apply(k_tr[a], y_tr[a], k_tr[b], spec.m, prior) / nbag
     enc_va = te_fit_apply(k_tr, y_tr, k_all[va_idx], spec.m, prior)
     enc_te = te_fit_apply(k_tr, y_tr, k_te, spec.m, prior)
     return enc_tr, enc_va, enc_te

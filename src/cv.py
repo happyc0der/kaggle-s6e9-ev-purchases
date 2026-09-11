@@ -45,7 +45,7 @@ def run(name: str, cols: list[str], te_specs: list[TESpec] | None = None, model=
     tr, te, orig, static, y, folds = get_data(static_version)
     if n_folds != N_FOLDS or fold_seed is not None:  # alternative frozen split; still comparable on pooled OOF
         folds = get_folds(y, n_folds, FOLD_SEED if fold_seed is None else fold_seed)
-    sig = signature(cols=cols, te=[(s.cols, s.m, s.decimals, s.binwidth, s.inner, s.offset, s.resid, s.modulus) if hasattr(s, "cols")
+    sig = signature(cols=cols, te=[(s.cols, s.m, s.decimals, s.binwidth, s.inner, s.offset, s.resid, s.modulus, s.nbag) if hasattr(s, "cols")
                                    else ("NTE", s.col, s.binwidth, s.m, s.inner, s.sigma) for s in te_specs], model=model,
                     params=params, cat_cols=cat_cols, noise=noise, seed_te=seed_te, sv=static_version,
                     extra=getattr(extra_fn, "__name__", None), n_folds=n_folds, fold_seed=fold_seed,
