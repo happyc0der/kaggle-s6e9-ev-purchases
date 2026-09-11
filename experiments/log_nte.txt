@@ -11,3 +11,14 @@
   vs lgb_allte_shallow: -0.000025 (se 0.000017, z -1.5)
 == sh_nte: pooled OOF 0.946191 | folds 0.946199 ± 0.000839
   sh_nte_fine fold 0: auc 0.946841 iters 842 (21s)
+  sh_nte_fine fold 1: auc 0.946416 iters 1886 (55s)
+  sh_nte_fine fold 2: auc 0.946229 iters 1659 (89s)
+  sh_nte_fine fold 3: auc 0.947316 iters 1404 (119s)
+  sh_nte_fine fold 4: auc 0.947032 iters 1180 (146s)
+  sh_nte_fine fold 5: auc 0.946506 iters 1860 (182s)
+  sh_nte_fine fold 6: auc 0.944820 iters 1868 (219s)
+  sh_nte_fine fold 7: auc 0.944620 iters 1496 (251s)
+  sh_nte_fine fold 8: auc 0.945737 iters 2086 (290s)
+  sh_nte_fine fold 9: auc 0.946299 iters 1109 (317s)
+  vs sh_nte: -0.000019 (se 0.000020, z -1.0)
+== sh_nte_fine: pooled OOF 0.946172 | folds 0.946182 ± 0.000843
