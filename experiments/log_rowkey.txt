@@ -1,0 +1,12 @@
+  lgb_m3_rowkeys fold 0: auc 0.946465 iters 746 (26s)
+  lgb_m3_rowkeys fold 1: auc 0.946110 iters 880 (55s)
+  lgb_m3_rowkeys fold 2: auc 0.945866 iters 865 (84s)
+  lgb_m3_rowkeys fold 3: auc 0.946880 iters 1077 (118s)
+  lgb_m3_rowkeys fold 4: auc 0.946844 iters 745 (143s)
+  lgb_m3_rowkeys fold 5: auc 0.946042 iters 1256 (179s)
+  lgb_m3_rowkeys fold 6: auc 0.944336 iters 1239 (213s)
+  lgb_m3_rowkeys fold 7: auc 0.944398 iters 999 (244s)
+  lgb_m3_rowkeys fold 8: auc 0.945232 iters 1001 (274s)
+  lgb_m3_rowkeys fold 9: auc 0.946056 iters 658 (298s)
+  vs lgb_full_temulti_m3: -0.000175 (se 0.000025, z -7.0)
+== lgb_m3_rowkeys: pooled OOF 0.945813 | folds 0.945823 ± 0.000857

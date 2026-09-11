@@ -39,3 +39,8 @@
   H_nn_k10_s1 fold 4: auc 0.946440 iters 21 (227s)
   H_nn_k10_s1 fold 5: auc 0.945722 iters 21 (285s)
   H_nn_k10_s1 fold 6: auc 0.943974 iters 21 (341s)
+  H_nn_k10_s1 fold 7: auc 0.943958 iters 21 (396s)
+  H_nn_k10_s1 fold 8: auc 0.944786 iters 21 (446s)
+  H_nn_k10_s1 fold 9: auc 0.945746 iters 21 (495s)
+  vs nn_E9_s1: -0.000035 (se 0.000007, z -5.4)
+== H_nn_k10_s1: pooled OOF 0.945500 | folds 0.945502 ± 0.000906

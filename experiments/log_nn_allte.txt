@@ -1,0 +1,12 @@
+  nn_allte_s0 fold 0: auc 0.946198 iters 24 (69s)
+  nn_allte_s0 fold 1: auc 0.945882 iters 19 (137s)
+  nn_allte_s0 fold 2: auc 0.945883 iters 19 (208s)
+  nn_allte_s0 fold 3: auc 0.946785 iters 20 (272s)
+  nn_allte_s0 fold 4: auc 0.946516 iters 21 (334s)
+  nn_allte_s0 fold 5: auc 0.945825 iters 18 (403s)
+  nn_allte_s0 fold 6: auc 0.944143 iters 21 (470s)
+  nn_allte_s0 fold 7: auc 0.944213 iters 23 (534s)
+  nn_allte_s0 fold 8: auc 0.945116 iters 21 (596s)
+  nn_allte_s0 fold 9: auc 0.945732 iters 8 (637s)
+  vs nn_E9_s0: +0.000051 (se 0.000022, z +2.3)
+== nn_allte_s0: pooled OOF 0.945616 | folds 0.945629 ± 0.000843
