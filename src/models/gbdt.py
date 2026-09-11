@@ -22,12 +22,16 @@ def fit_lgb(Xtr, ytr, Xva, yva, Xte, params=None, rounds=20000, es=300, cat_cols
     import lightgbm as lgb
 
     p = {**LGB_DEFAULT, **(params or {})}
+    fixed = p.pop("_fixed_rounds", None)
     if cat_cols:
         Xtr, Xva, Xte = (x.copy() for x in (Xtr, Xva, Xte))
         for c in cat_cols:
             for x in (Xtr, Xva, Xte):
                 x[c] = np.round(x[c].to_numpy(float) * 10).astype(np.int64)
     dtr = lgb.Dataset(Xtr, ytr, categorical_feature=cat_cols or "auto", free_raw_data=False)
+    if fixed:
+        m = lgb.train(p, dtr, fixed)
+        return m.predict(Xva), m.predict(Xte), fixed
     dva = lgb.Dataset(Xva, yva, reference=dtr, categorical_feature=cat_cols or "auto")
     m = lgb.train(p, dtr, rounds, valid_sets=[dva], callbacks=[lgb.early_stopping(es, verbose=False)])
     return m.predict(Xva, num_iteration=m.best_iteration), m.predict(Xte, num_iteration=m.best_iteration), m.best_iteration
@@ -37,9 +41,13 @@ def fit_xgb(Xtr, ytr, Xva, yva, Xte, params=None, rounds=20000, es=300, cat_cols
     import xgboost as xgb
 
     p = {**XGB_DEFAULT, **(params or {})}
+    fixed = p.pop("_fixed_rounds", None)
     dtr = xgb.DMatrix(Xtr, ytr)
     dva = xgb.DMatrix(Xva, yva)
     dte = xgb.DMatrix(Xte)
+    if fixed:
+        m = xgb.train(p, dtr, fixed)
+        return m.predict(dva), m.predict(dte), fixed
     m = xgb.train(p, dtr, rounds, evals=[(dva, "va")], early_stopping_rounds=es, verbose_eval=False)
     it = m.best_iteration + 1
     return m.predict(dva, iteration_range=(0, it)), m.predict(dte, iteration_range=(0, it)), m.best_iteration
@@ -49,6 +57,7 @@ def fit_cb(Xtr, ytr, Xva, yva, Xte, params=None, rounds=20000, es=300, cat_cols=
     from catboost import CatBoostClassifier, Pool
 
     p = {**CB_DEFAULT, **(params or {})}
+    fixed = p.pop("_fixed_rounds", None)
     cats = [Xtr.columns.get_loc(c) for c in (cat_cols or [])]
     if cats:  # catboost needs int/str categoricals
         Xtr, Xva, Xte = (x.copy() for x in (Xtr, Xva, Xte))
@@ -56,6 +65,10 @@ def fit_cb(Xtr, ytr, Xva, yva, Xte, params=None, rounds=20000, es=300, cat_cols=
             for x in (Xtr, Xva, Xte):
                 x[c] = np.round(x[c].to_numpy(float) * 10).astype(np.int64)
     ptr, pva, pte = Pool(Xtr, ytr, cat_features=cats), Pool(Xva, yva, cat_features=cats), Pool(Xte, cat_features=cats)
+    if fixed:
+        m = CatBoostClassifier(iterations=fixed, **p)
+        m.fit(ptr)
+        return m.predict_proba(pva)[:, 1], m.predict_proba(pte)[:, 1], fixed
     m = CatBoostClassifier(iterations=rounds, od_type="Iter", od_wait=es, **p)
     m.fit(ptr, eval_set=pva, use_best_model=True)
     return m.predict_proba(pva)[:, 1], m.predict_proba(pte)[:, 1], m.get_best_iteration()

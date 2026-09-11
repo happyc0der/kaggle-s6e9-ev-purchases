@@ -12,7 +12,7 @@ from ..config import CAT_COLS
 INC, COM = "Annual_Income_USD", "Daily_Commute_km"
 DEV = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
 
-NN_DEFAULT = dict(extra_cats=(), ple_bins=0, ema=0.0, epochs=14, bs=4096, lr=2e-3, wd=1e-5, hidden=(512, 256, 128), drop=0.15, emb_inc=24, emb_com=12,
+NN_DEFAULT = dict(extra_cats=(), ple_bins=0, ema=0.0, fixed_epochs=0, epochs=14, bs=4096, lr=2e-3, wd=1e-5, hidden=(512, 256, 128), drop=0.15, emb_inc=24, emb_com=12,
                   emb_cat=4, min_count=3, seed=0, patience=4)
 
 
@@ -115,6 +115,9 @@ def fit_nn(Xtr, ytr, Xva, yva, Xte, params=None, cat_cols=None):
         return np.concatenate(out)
 
     best, best_ep, best_va, best_te = -1, -1, None, None
+    if p["fixed_epochs"]:  # honest mode: train a fixed schedule, take the final weights, no validation-based selection
+        p = {**p, "epochs": p["fixed_epochs"]}
+        sched = torch.optim.lr_scheduler.OneCycleLR(opt, max_lr=p["lr"], total_steps=steps * p["epochs"], pct_start=0.2)
     for ep in range(p["epochs"]):
         net.train()
         perm = torch.randperm(n, device=DEV)
@@ -130,6 +133,10 @@ def fit_nn(Xtr, ytr, Xva, yva, Xte, params=None, cat_cols=None):
             with torch.no_grad():
                 for i in range(0, n, 16384):
                     ema.module(*[t[i:i + 16384] for t in T[0]])
+        if p["fixed_epochs"]:
+            if ep == p["epochs"] - 1:
+                best_va, best_te, best_ep = predict(T[1]), predict(T[2]), ep
+            continue
         pva = predict(T[1]); auc = roc_auc_score(yva, pva)
         if auc > best:
             best, best_ep, best_va, best_te = auc, ep, pva, predict(T[2])

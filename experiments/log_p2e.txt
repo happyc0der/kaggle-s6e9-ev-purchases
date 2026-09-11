@@ -1,0 +1,5 @@
+  cb_m3_k20_teseed1 fold 0: auc 0.945927 iters 151 (13s)
+  cb_m3_k20_teseed1 fold 1: auc 0.947488 iters 541 (38s)
+  cb_m3_k20_teseed1 fold 2: auc 0.946082 iters 408 (58s)
+  cb_m3_k20_teseed1 fold 3: auc 0.946807 iters 344 (76s)
+  cb_m3_k20_teseed1 fold 4: auc 0.944537 iters 302 (92s)
