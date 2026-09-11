@@ -18,3 +18,7 @@
   sh_pairte_tri fold 5: auc 0.946596 iters 1316 (163s)
   sh_pairte_tri fold 6: auc 0.944954 iters 1445 (193s)
   sh_pairte_tri fold 7: auc 0.944563 iters 1115 (218s)
+  sh_pairte_tri fold 8: auc 0.945617 iters 1060 (242s)
+  sh_pairte_tri fold 9: auc 0.946387 iters 919 (265s)
+  vs sh_pairte: +0.000002 (se 0.000014, z +0.2)
+== sh_pairte_tri: pooled OOF 0.946204 | folds 0.946214 ± 0.000854
