@@ -1,0 +1,16 @@
+synthness AUC (synthetic vs original): 0.7674
+corr(synthness, y) on train: 0.0333
+residual probe R^2: -0.00282
+AUC blend: 0.946389  AUC blend + residual model: 0.945921
+  sh_synth fold 0: auc 0.946868 iters 1517 (28s)
+  sh_synth fold 1: auc 0.946518 iters 1757 (58s)
+  sh_synth fold 2: auc 0.946317 iters 1391 (85s)
+  sh_synth fold 3: auc 0.947248 iters 1235 (109s)
+  sh_synth fold 4: auc 0.947096 iters 1049 (131s)
+  sh_synth fold 5: auc 0.946513 iters 1436 (158s)
+  sh_synth fold 6: auc 0.944841 iters 2029 (191s)
+  sh_synth fold 7: auc 0.944658 iters 1845 (223s)
+  sh_synth fold 8: auc 0.945771 iters 1713 (252s)
+  sh_synth fold 9: auc 0.946323 iters 1357 (278s)
+  vs lgb_allte_shallow: -0.000011 (se 0.000012, z -0.9)
+== sh_synth: pooled OOF 0.946205 | folds 0.946215 ± 0.000836
