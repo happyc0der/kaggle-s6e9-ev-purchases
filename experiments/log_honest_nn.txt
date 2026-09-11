@@ -29,3 +29,13 @@
   H_nn_k20_s0 fold 16: auc 0.944222 iters 21 (760s)
   H_nn_k20_s0 fold 17: auc 0.945659 iters 21 (809s)
   H_nn_k20_s0 fold 18: auc 0.946826 iters 21 (855s)
+  H_nn_k20_s0 fold 19: auc 0.944746 iters 21 (900s)
+  vs nn_E9_k20_s0: -0.000032 (se 0.000010, z -3.2)
+== H_nn_k20_s0: pooled OOF 0.945617 | folds 0.945623 ± 0.001299
+  H_nn_k10_s1 fold 0: auc 0.946179 iters 21 (44s)
+  H_nn_k10_s1 fold 1: auc 0.945879 iters 21 (87s)
+  H_nn_k10_s1 fold 2: auc 0.945670 iters 21 (133s)
+  H_nn_k10_s1 fold 3: auc 0.946666 iters 21 (178s)
+  H_nn_k10_s1 fold 4: auc 0.946440 iters 21 (227s)
+  H_nn_k10_s1 fold 5: auc 0.945722 iters 21 (285s)
+  H_nn_k10_s1 fold 6: auc 0.943974 iters 21 (341s)
