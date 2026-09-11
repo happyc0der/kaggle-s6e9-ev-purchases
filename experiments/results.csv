@@ -67,3 +67,7 @@ bag,xgb_m3_tebag3,xgb,0.946051,0,10,xgb_full,,
 2026-09-10 21:03,nnsweep_R100,nn,0.945886,48,2,,+nan,+nan
 2026-09-10 21:04,nnsweep_R1000,nn,0.945737,48,2,,+nan,+nan
 2026-09-10 21:05,lgb_m3_mods,lgb,0.945962,48,10,lgb_full_temulti_m3,-0.000026,-1.62
+2026-09-10 21:07,nnsweep_EMA999,nn,0.945969,45,2,,+nan,+nan
+2026-09-10 21:09,nnsweep_EMA9995_long,nn,0.945971,45,2,,+nan,+nan
+2026-09-10 21:10,nnsweep_EMA999_lr2,nn,0.946045,45,2,,+nan,+nan
+2026-09-10 21:10,lgb_m3_mods_temod,lgb,0.945963,51,10,lgb_m3_mods,+0.000001,+0.07

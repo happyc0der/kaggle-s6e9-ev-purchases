@@ -43,10 +43,11 @@ def run(name: str, cols: list[str], te_specs: list[TESpec] | None = None, model=
     """
     te_specs = te_specs or []
     tr, te, orig, static, y, folds = get_data(static_version)
-    assert n_folds == N_FOLDS, "folds are frozen at N_FOLDS"
+    if n_folds != N_FOLDS:  # alternative frozen split (e.g. 20 folds); still comparable on pooled OOF
+        folds = get_folds(y, n_folds)
     sig = signature(cols=cols, te=[(s.cols, s.m, s.decimals, s.binwidth, s.inner, s.offset, s.resid, s.modulus) for s in te_specs], model=model,
                     params=params, cat_cols=cat_cols, noise=noise, seed_te=seed_te, sv=static_version,
-                    extra=getattr(extra_fn, "__name__", None))
+                    extra=getattr(extra_fn, "__name__", None), n_folds=n_folds)
     d = EXP / name
     meta_p = d / "meta.json"
     if meta_p.exists() and not force:

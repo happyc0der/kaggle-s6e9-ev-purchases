@@ -1,0 +1,13 @@
+  nnsweep_EMA999 fold 0: auc 0.946139 iters 24 (28s)
+  nnsweep_EMA999 fold 1: auc 0.945793 iters 24 (53s)
+== nnsweep_EMA999: pooled OOF 0.945969 | folds 0.945966 ± 0.000173
+  nnsweep_EMA9995_long fold 0: auc 0.946163 iters 34 (35s)
+  nnsweep_EMA9995_long fold 1: auc 0.945773 iters 34 (73s)
+== nnsweep_EMA9995_long: pooled OOF 0.945971 | folds 0.945968 ± 0.000195
+  nnsweep_EMA999_lr2 fold 0: auc 0.946246 iters 24 (27s)
+  nnsweep_EMA999_lr2 fold 1: auc 0.945841 iters 24 (53s)
+== nnsweep_EMA999_lr2: pooled OOF 0.946045 | folds 0.946043 ± 0.000202
+REF E9 {'0': 0.9461652849346537, '1': 0.9458561695220056}
+EMA999 {0: 0.9461394679078343, 1: 0.9457926036854328}
+EMA9995_long {0: 0.9461627023010136, 1: 0.9457727416888996}
+EMA999_lr2 {0: 0.9462455164774026, 1: 0.945841063171076}
