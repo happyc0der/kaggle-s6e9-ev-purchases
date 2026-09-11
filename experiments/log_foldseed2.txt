@@ -1,0 +1,1 @@
+  cbH_k20_fs2_s0 fold 0: auc 0.946725 iters 1215 (35s)
