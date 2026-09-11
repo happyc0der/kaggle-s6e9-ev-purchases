@@ -1,0 +1,7 @@
+  nnF_k20_s1 fold 0: auc 0.945609 iters 23 (89s)
+  nnF_k20_s1 fold 1: auc 0.947026 iters 22 (176s)
+  nnF_k20_s1 fold 2: auc 0.945649 iters 8 (228s)
+  nnF_k20_s1 fold 3: auc 0.946376 iters 23 (307s)
+  nnF_k20_s1 fold 4: auc 0.944487 iters 16 (384s)
+  nnF_k20_s1 fold 5: auc 0.947353 iters 21 (468s)
+  nnF_k20_s1 fold 6: auc 0.947408 iters 18 (558s)
