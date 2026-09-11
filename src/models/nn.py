@@ -12,7 +12,7 @@ from ..config import CAT_COLS
 INC, COM = "Annual_Income_USD", "Daily_Commute_km"
 DEV = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
 
-NN_DEFAULT = dict(extra_cats=(), ple_bins=0, epochs=14, bs=4096, lr=2e-3, wd=1e-5, hidden=(512, 256, 128), drop=0.15, emb_inc=24, emb_com=12,
+NN_DEFAULT = dict(extra_cats=(), ple_bins=0, ema=0.0, epochs=14, bs=4096, lr=2e-3, wd=1e-5, hidden=(512, 256, 128), drop=0.15, emb_inc=24, emb_com=12,
                   emb_cat=4, min_count=3, seed=0, patience=4)
 
 
@@ -104,12 +104,14 @@ def fit_nn(Xtr, ytr, Xva, yva, Xte, params=None, cat_cols=None):
     n = len(ytr); steps = (n + p["bs"] - 1) // p["bs"]
     sched = torch.optim.lr_scheduler.OneCycleLR(opt, max_lr=p["lr"], total_steps=steps * p["epochs"], pct_start=0.2)
     lossf = nn.BCEWithLogitsLoss()
+    ema = torch.optim.swa_utils.AveragedModel(net, multi_avg_fn=torch.optim.swa_utils.get_ema_multi_avg_fn(p["ema"])) if p["ema"] else None
 
     def predict(ts):
-        net.eval(); out = []
+        mdl = ema.module if ema is not None else net
+        mdl.eval(); out = []
         with torch.no_grad():
             for i in range(0, len(ts[0]), 16384):
-                out.append(torch.sigmoid(net(*[t[i:i + 16384] for t in ts])).float().cpu().numpy())
+                out.append(torch.sigmoid(mdl(*[t[i:i + 16384] for t in ts])).float().cpu().numpy())
         return np.concatenate(out)
 
     best, best_ep, best_va, best_te = -1, -1, None, None
@@ -121,6 +123,13 @@ def fit_nn(Xtr, ytr, Xva, yva, Xte, params=None, cat_cols=None):
             opt.zero_grad()
             loss = lossf(net(*[t[b] for t in T[0]]), ytr_t[b])
             loss.backward(); opt.step(); sched.step()
+            if ema is not None:
+                ema.update_parameters(net)
+        if ema is not None:  # refresh BN statistics of the averaged weights
+            ema.module.train()
+            with torch.no_grad():
+                for i in range(0, n, 16384):
+                    ema.module(*[t[i:i + 16384] for t in T[0]])
         pva = predict(T[1]); auc = roc_auc_score(yva, pva)
         if auc > best:
             best, best_ep, best_va, best_te = auc, ep, pva, predict(T[2])

@@ -1,0 +1,13 @@
+  nnsweep_R10 fold 0: auc 0.946158 iters 24 (21s)
+  nnsweep_R10 fold 1: auc 0.945689 iters 23 (39s)
+== nnsweep_R10: pooled OOF 0.945926 | folds 0.945924 ± 0.000234
+  nnsweep_R100 fold 0: auc 0.946068 iters 22 (19s)
+  nnsweep_R100 fold 1: auc 0.945706 iters 23 (38s)
+== nnsweep_R100: pooled OOF 0.945886 | folds 0.945887 ± 0.000181
+  nnsweep_R1000 fold 0: auc 0.945880 iters 21 (19s)
+  nnsweep_R1000 fold 1: auc 0.945595 iters 24 (38s)
+== nnsweep_R1000: pooled OOF 0.945737 | folds 0.945738 ± 0.000143
+REF E9 {'0': 0.9461652849346537, '1': 0.9458561695220056}
+R10 {0: 0.9461582624054523, 1: 0.9456893285959677}
+R100 {0: 0.9460684947459395, 1: 0.9457061168783274}
+R1000 {0: 0.9458804675351066, 1: 0.9455949813971402}

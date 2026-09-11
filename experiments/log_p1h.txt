@@ -1,1 +1,12 @@
   lgb_m3_mods fold 0: auc 0.946709 iters 681 (21s)
+  lgb_m3_mods fold 1: auc 0.946310 iters 1098 (50s)
+  lgb_m3_mods fold 2: auc 0.946010 iters 721 (73s)
+  lgb_m3_mods fold 3: auc 0.947014 iters 582 (95s)
+  lgb_m3_mods fold 4: auc 0.946873 iters 964 (126s)
+  lgb_m3_mods fold 5: auc 0.946341 iters 793 (154s)
+  lgb_m3_mods fold 6: auc 0.944561 iters 1200 (189s)
+  lgb_m3_mods fold 7: auc 0.944448 iters 541 (208s)
+  lgb_m3_mods fold 8: auc 0.945384 iters 1267 (242s)
+  lgb_m3_mods fold 9: auc 0.946079 iters 784 (265s)
+  vs lgb_full_temulti_m3: -0.000026 (se 0.000016, z -1.6)
+== lgb_m3_mods: pooled OOF 0.945962 | folds 0.945973 ± 0.000858
