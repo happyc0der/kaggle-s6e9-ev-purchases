@@ -45,7 +45,8 @@ def run(name: str, cols: list[str], te_specs: list[TESpec] | None = None, model=
     tr, te, orig, static, y, folds = get_data(static_version)
     if n_folds != N_FOLDS:  # alternative frozen split (e.g. 20 folds); still comparable on pooled OOF
         folds = get_folds(y, n_folds)
-    sig = signature(cols=cols, te=[(s.cols, s.m, s.decimals, s.binwidth, s.inner, s.offset, s.resid, s.modulus) for s in te_specs], model=model,
+    sig = signature(cols=cols, te=[(s.cols, s.m, s.decimals, s.binwidth, s.inner, s.offset, s.resid, s.modulus) if hasattr(s, "cols")
+                                   else ("NTE", s.col, s.binwidth, s.m, s.inner, s.sigma) for s in te_specs], model=model,
                     params=params, cat_cols=cat_cols, noise=noise, seed_te=seed_te, sv=static_version,
                     extra=getattr(extra_fn, "__name__", None), n_folds=n_folds,
                     pseudo=None if pseudo is None else (pseudo[0], pseudo[1], pseudo[2]))
@@ -98,6 +99,11 @@ def run(name: str, cols: list[str], te_specs: list[TESpec] | None = None, model=
             lr = LogisticRegression(C=1e6).fit(bs[:ntr][tr_idx], y[tr_idx])
             p_base = (lr.predict_proba(bs[:ntr])[:, 1], lr.predict_proba(bs[ntr:])[:, 1])
         for spec in te_specs:
+            if hasattr(spec, "nested"):  # multi-column neighbourhood spec
+                a, b, c = spec.nested(df_tr_raw, y, tr_idx, va_idx, df_te_raw, seed=seed_te)
+                for j, cn in enumerate(spec.colnames):
+                    Xtr[cn], Xva[cn], Xte[cn] = a[:, j], b[:, j], c[:, j]
+                continue
             a, b, c = nested_te(spec, df_tr_raw, y, tr_idx, va_idx, df_te_raw, seed=seed_te, p_base=p_base)
             Xtr[spec.colname], Xva[spec.colname], Xte[spec.colname] = a, b, c
         ytr_fold = y[tr_idx]
@@ -113,7 +119,7 @@ def run(name: str, cols: list[str], te_specs: list[TESpec] | None = None, model=
     mask = ~np.isnan(oof)
     auc = float(roc_auc_score(y[mask], oof[mask]))
     meta = dict(name=name, sig=sig, auc=auc, fold_auc=fold_auc, iters=iters, cols=list(X_tr_all.columns) +
-                [s.colname for s in te_specs], model=model, params=params, folds_done=fold_ids,
+                [c for s in te_specs for c in (s.colnames if hasattr(s, "colnames") else [s.colname])], model=model, params=params, folds_done=fold_ids,
                 secs=round(time.time() - t0), time=time.strftime("%Y-%m-%d %H:%M"))
     if ref is not None and (EXP / ref / "oof.npy").exists():
         r = np.load(EXP / ref / "oof.npy")
