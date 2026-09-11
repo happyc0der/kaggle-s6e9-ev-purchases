@@ -1,0 +1,3 @@
+  H_nn_k10_s0 fold 0: auc 0.946118 iters 21 (55s)
+  H_nn_k10_s0 fold 1: auc 0.945825 iters 21 (96s)
+  H_nn_k10_s0 fold 2: auc 0.945846 iters 21 (137s)

@@ -68,7 +68,7 @@ def run(name: str, cols: list[str], te_specs: list[TESpec] | None = None, model=
     if extra_fn is not None:
         X_all = pd.concat([X_all, extra_fn(tr, te, static)], axis=1)
     X_tr_all, X_te_all = X_all.iloc[:ntr].reset_index(drop=True), X_all.iloc[ntr:].reset_index(drop=True)
-    df_tr_raw, df_te_raw = tr[FEATURES], te[FEATURES]
+    df_tr_raw, df_te_raw = static.iloc[:ntr].reset_index(drop=True), static.iloc[ntr:].reset_index(drop=True)
 
     oof = np.full(ntr, np.nan)
     test_pred = np.zeros(len(te))
