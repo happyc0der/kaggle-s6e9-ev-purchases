@@ -114,3 +114,39 @@ def run(name: str, cols: list[str], te_specs: list[TESpec] | None = None, model=
 
 def load_oof(name):
     return np.load(EXP / name / "oof.npy"), np.load(EXP / name / "test.npy")
+
+
+def refit_full(name: str, cols, te_specs=None, model="lgb", params=None, static_version="v2", rounds_mult=1.1,
+               seed_te=0, extra_fn=None):
+    """Train on ALL train rows (no validation) with rounds = rounds_mult * mean best_iter of the CV run `name`.
+
+    Test TE uses all of train; train-row TE uses inner folds. Saves experiments/<name>/test_refit.npy."""
+    import lightgbm as lgb
+    import xgboost as xgb
+    from .models.gbdt import LGB_DEFAULT, XGB_DEFAULT
+    te_specs = te_specs or []
+    tr, te, orig, static, y, folds = get_data(static_version)
+    meta = json.loads((EXP / name / "meta.json").read_text())
+    n_rounds = int(round(rounds_mult * np.mean(list(meta["iters"].values()))))
+    ntr = len(tr)
+    X_all = static[cols].copy()
+    if extra_fn is not None:
+        X_all = pd.concat([X_all, extra_fn(tr, te, static)], axis=1)
+    Xtr, Xte = X_all.iloc[:ntr].reset_index(drop=True).copy(), X_all.iloc[ntr:].reset_index(drop=True).copy()
+    all_idx = np.arange(ntr)
+    for spec in te_specs:
+        a, _, c = nested_te(spec, tr[FEATURES], y, all_idx, all_idx[:1], te[FEATURES], seed=seed_te)
+        Xtr[spec.colname], Xte[spec.colname] = a, c
+    if model == "lgb":
+        p = {**LGB_DEFAULT, **(params or {})}
+        m = lgb.train(p, lgb.Dataset(Xtr, y), n_rounds)
+        pred = m.predict(Xte)
+    elif model == "xgb":
+        p = {**XGB_DEFAULT, **(params or {})}
+        m = xgb.train(p, xgb.DMatrix(Xtr, y), n_rounds)
+        pred = m.predict(xgb.DMatrix(Xte))
+    else:
+        raise ValueError(model)
+    np.save(EXP / name / "test_refit.npy", pred)
+    print(f"refit {name}: {n_rounds} rounds on {ntr} rows")
+    return pred

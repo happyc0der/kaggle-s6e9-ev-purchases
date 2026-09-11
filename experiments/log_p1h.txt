@@ -1,0 +1,1 @@
+  lgb_m3_mods fold 0: auc 0.946709 iters 681 (21s)
