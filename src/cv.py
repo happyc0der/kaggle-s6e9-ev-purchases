@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics import roc_auc_score
 
-from .config import EXP, FEATURES, N_FOLDS, TARGET
+from .config import EXP, FEATURES, FOLD_SEED, N_FOLDS, TARGET
 from .data import load_all
 from .delong import paired
 from .features.static import build_static
@@ -35,7 +35,7 @@ def signature(**kw) -> str:
 
 def run(name: str, cols: list[str], te_specs: list[TESpec] | None = None, model="lgb", params=None,
         cat_cols=None, n_folds: int = N_FOLDS, folds_subset=None, static_version="v1", noise=False,
-        ref: str | None = None, force=False, seed_te=0, extra_fn=None, pseudo=None):
+        ref: str | None = None, force=False, seed_te=0, extra_fn=None, pseudo=None, fold_seed=None):
     """Train `model` on static `cols` + nested TE columns. Caches to experiments/<name>/.
 
     folds_subset: run only these fold ids (quick checks; pooled AUC then covers only those rows).
@@ -43,12 +43,12 @@ def run(name: str, cols: list[str], te_specs: list[TESpec] | None = None, model=
     """
     te_specs = te_specs or []
     tr, te, orig, static, y, folds = get_data(static_version)
-    if n_folds != N_FOLDS:  # alternative frozen split (e.g. 20 folds); still comparable on pooled OOF
-        folds = get_folds(y, n_folds)
+    if n_folds != N_FOLDS or fold_seed is not None:  # alternative frozen split; still comparable on pooled OOF
+        folds = get_folds(y, n_folds, FOLD_SEED if fold_seed is None else fold_seed)
     sig = signature(cols=cols, te=[(s.cols, s.m, s.decimals, s.binwidth, s.inner, s.offset, s.resid, s.modulus) if hasattr(s, "cols")
                                    else ("NTE", s.col, s.binwidth, s.m, s.inner, s.sigma) for s in te_specs], model=model,
                     params=params, cat_cols=cat_cols, noise=noise, seed_te=seed_te, sv=static_version,
-                    extra=getattr(extra_fn, "__name__", None), n_folds=n_folds,
+                    extra=getattr(extra_fn, "__name__", None), n_folds=n_folds, fold_seed=fold_seed,
                     pseudo=None if pseudo is None else (pseudo[0], pseudo[1], pseudo[2]))
     d = EXP / name
     meta_p = d / "meta.json"
