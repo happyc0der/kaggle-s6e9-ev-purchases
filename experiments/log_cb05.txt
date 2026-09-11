@@ -3,3 +3,4 @@
   cbF_k20_lr05_s0 fold 2: auc 0.946403 iters 757 (120s)
   cbF_k20_lr05_s0 fold 3: auc 0.946741 iters 713 (146s)
   cbF_k20_lr05_s0 fold 4: auc 0.944980 iters 1177 (182s)
+  cbF_k20_lr05_s0 fold 5: auc 0.947793 iters 710 (209s)

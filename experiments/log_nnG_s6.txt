@@ -16,3 +16,4 @@
   nnG_k20_s6 fold 15: auc 0.945575 iters 16 (347s)
   nnG_k20_s6 fold 16: auc 0.944432 iters 20 (371s)
   nnG_k20_s6 fold 17: auc 0.945757 iters 19 (394s)
+  nnG_k20_s6 fold 18: auc 0.946804 iters 16 (416s)
