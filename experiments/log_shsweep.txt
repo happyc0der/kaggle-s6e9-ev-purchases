@@ -83,3 +83,14 @@
   vs lgb_allte_shallow: -0.000008 (se 0.000011, z -0.7)
 == sh_te3: pooled OOF 0.946208 | folds 0.946217 ± 0.000825
   sh_extras fold 0: auc 0.946859 iters 1046 (24s)
+  sh_extras fold 1: auc 0.946498 iters 1259 (50s)
+  sh_extras fold 2: auc 0.946352 iters 1534 (80s)
+  sh_extras fold 3: auc 0.947319 iters 1027 (103s)
+  sh_extras fold 4: auc 0.947031 iters 936 (125s)
+  sh_extras fold 5: auc 0.946548 iters 1559 (155s)
+  sh_extras fold 6: auc 0.944856 iters 1411 (182s)
+  sh_extras fold 7: auc 0.944675 iters 1583 (213s)
+  sh_extras fold 8: auc 0.945775 iters 1687 (244s)
+  sh_extras fold 9: auc 0.946309 iters 1068 (268s)
+  vs lgb_allte_shallow: -0.000002 (se 0.000014, z -0.2)
+== sh_extras: pooled OOF 0.946214 | folds 0.946222 ± 0.000832
