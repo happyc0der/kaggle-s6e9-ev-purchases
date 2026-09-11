@@ -1,0 +1,12 @@
+  sh_tebag5 fold 0: auc 0.946879 iters 1310 (44s)
+  sh_tebag5 fold 1: auc 0.946510 iters 1631 (98s)
+  sh_tebag5 fold 2: auc 0.946340 iters 1918 (153s)
+  sh_tebag5 fold 3: auc 0.947186 iters 1313 (200s)
+  sh_tebag5 fold 4: auc 0.947108 iters 1304 (248s)
+  sh_tebag5 fold 5: auc 0.946518 iters 1467 (298s)
+  sh_tebag5 fold 6: auc 0.944787 iters 1659 (350s)
+  sh_tebag5 fold 7: auc 0.944565 iters 1345 (397s)
+  sh_tebag5 fold 8: auc 0.945601 iters 1659 (449s)
+  sh_tebag5 fold 9: auc 0.946291 iters 1270 (494s)
+  vs lgb_allte_shallow: -0.000048 (se 0.000016, z -3.0)
+== sh_tebag5: pooled OOF 0.946168 | folds 0.946179 ± 0.000866
