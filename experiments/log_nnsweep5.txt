@@ -1,2 +1,13 @@
   nnsweep_P16 fold 0: auc 0.946239 iters 24 (25s)
   nnsweep_P16 fold 1: auc 0.945831 iters 19 (48s)
+== nnsweep_P16: pooled OOF 0.946027 | folds 0.946035 ± 0.000204
+  nnsweep_P48 fold 0: auc 0.946186 iters 16 (29s)
+  nnsweep_P48 fold 1: auc 0.945796 iters 9 (51s)
+== nnsweep_P48: pooled OOF 0.945961 | folds 0.945991 ± 0.000195
+  nnsweep_P48_wide fold 0: auc 0.945848 iters 8 (38s)
+  nnsweep_P48_wide fold 1: auc 0.945637 iters 15 (87s)
+== nnsweep_P48_wide: pooled OOF 0.945689 | folds 0.945742 ± 0.000106
+REF E9 {'0': 0.9461652849346537, '1': 0.9458561695220056}
+P16 {0: 0.9462393333623192, 1: 0.9458309839952712}
+P48 {0: 0.9461859079896431, 1: 0.9457961397755894}
+P48_wide {0: 0.9458478599428761, 1: 0.9456365564457382}

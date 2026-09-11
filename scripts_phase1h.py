@@ -10,6 +10,6 @@ def temulti(m=3):
             TESpec((INC,), m=m, binwidth=2000), TESpec((COM,), m=m, binwidth=1), TESpec((COM,), m=m, binwidth=5)]
 def mods(tr, te, static):
     inc = np.round(static[INC].to_numpy(float)).astype(np.int64)
-    return pd.DataFrame({"inc_mod1000": inc % 1000, "inc_mod500": inc % 500, "inc_mod100": inc % 100})
+    return pd.DataFrame({"inc_res1000": inc % 1000, "inc_res500": inc % 500, "inc_res100": inc % 100})
 REF = "lgb_full_temulti_m3"
 run("lgb_m3_mods", full, te_specs=temulti(3), static_version="v2", extra_fn=mods, ref=REF)
