@@ -92,7 +92,7 @@ def run(name: str, cols: list[str], te_specs: list[TESpec] | None = None, model=
         tr_idx, va_idx = np.where(folds != k)[0], np.where(folds == k)[0]
         Xtr, Xva, Xte = X_tr_all.iloc[tr_idx].copy(), X_tr_all.iloc[va_idx].copy(), X_te_all.copy()
         p_base = None
-        if any(s.resid for s in te_specs):
+        if any(getattr(s, "resid", False) for s in te_specs):
             # leak-free base probability: 1-D logistic fit of the recovered buy-score on this fold's training rows
             from sklearn.linear_model import LogisticRegression
             bs = static["buy_score"].to_numpy(np.float64).reshape(-1, 1)

@@ -1,0 +1,12 @@
+  sh_quant fold 0: auc 0.946857 iters 1092 (22s)
+  sh_quant fold 1: auc 0.946521 iters 1793 (52s)
+  sh_quant fold 2: auc 0.946265 iters 1268 (76s)
+  sh_quant fold 3: auc 0.947323 iters 1327 (101s)
+  sh_quant fold 4: auc 0.947088 iters 1068 (122s)
+  sh_quant fold 5: auc 0.946589 iters 1699 (151s)
+  sh_quant fold 6: auc 0.944882 iters 1599 (179s)
+  sh_quant fold 7: auc 0.944661 iters 1138 (202s)
+  sh_quant fold 8: auc 0.945837 iters 1528 (229s)
+  sh_quant fold 9: auc 0.946362 iters 1177 (252s)
+  vs lgb_allte_shallow: +0.000013 (se 0.000012, z +1.1)
+== sh_quant: pooled OOF 0.946229 | folds 0.946238 ± 0.000836
