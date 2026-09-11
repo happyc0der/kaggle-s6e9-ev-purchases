@@ -35,7 +35,7 @@ def signature(**kw) -> str:
 
 def run(name: str, cols: list[str], te_specs: list[TESpec] | None = None, model="lgb", params=None,
         cat_cols=None, n_folds: int = N_FOLDS, folds_subset=None, static_version="v1", noise=False,
-        ref: str | None = None, force=False, seed_te=0, extra_fn=None):
+        ref: str | None = None, force=False, seed_te=0, extra_fn=None, pseudo=None):
     """Train `model` on static `cols` + nested TE columns. Caches to experiments/<name>/.
 
     folds_subset: run only these fold ids (quick checks; pooled AUC then covers only those rows).
@@ -47,7 +47,8 @@ def run(name: str, cols: list[str], te_specs: list[TESpec] | None = None, model=
         folds = get_folds(y, n_folds)
     sig = signature(cols=cols, te=[(s.cols, s.m, s.decimals, s.binwidth, s.inner, s.offset, s.resid, s.modulus) for s in te_specs], model=model,
                     params=params, cat_cols=cat_cols, noise=noise, seed_te=seed_te, sv=static_version,
-                    extra=getattr(extra_fn, "__name__", None), n_folds=n_folds)
+                    extra=getattr(extra_fn, "__name__", None), n_folds=n_folds,
+                    pseudo=None if pseudo is None else (pseudo[0], pseudo[1], pseudo[2]))
     d = EXP / name
     meta_p = d / "meta.json"
     if meta_p.exists() and not force:
@@ -71,6 +72,18 @@ def run(name: str, cols: list[str], te_specs: list[TESpec] | None = None, model=
 
     oof = np.full(ntr, np.nan)
     test_pred = np.zeros(len(te))
+    ps_idx, ps_y = None, None
+    if pseudo is not None:
+        # class-balanced gate: most confident negatives / positives from a previous test prediction,
+        # keeping the train positive rate; pseudo rows only feed the booster (TE stays real-label only)
+        src, frac_pos, frac_neg = pseudo
+        tp = np.load(EXP / src / "test.npy") if isinstance(src, str) else np.asarray(src)
+        order = np.argsort(tp)
+        n_neg, n_pos = int(frac_neg * len(tp)), int(frac_pos * len(tp))
+        neg_i, pos_i = order[:n_neg], order[-n_pos:]
+        ps_idx = np.concatenate([neg_i, pos_i]); ps_y = np.concatenate([np.zeros(n_neg), np.ones(n_pos)])
+        print(f"  pseudo: {n_neg} neg (max p {tp[neg_i].max():.4f}) + {n_pos} pos (min p {tp[pos_i].min():.4f}), "
+              f"pos rate {n_pos/(n_neg+n_pos):.3f}")
     fold_auc, iters = {}, {}
     fold_ids = list(range(n_folds)) if folds_subset is None else list(folds_subset)
     t0 = time.time()
@@ -87,7 +100,11 @@ def run(name: str, cols: list[str], te_specs: list[TESpec] | None = None, model=
         for spec in te_specs:
             a, b, c = nested_te(spec, df_tr_raw, y, tr_idx, va_idx, df_te_raw, seed=seed_te, p_base=p_base)
             Xtr[spec.colname], Xva[spec.colname], Xte[spec.colname] = a, b, c
-        pva, pte, it = MODELS[model](Xtr, y[tr_idx], Xva, y[va_idx], Xte, params=params, cat_cols=cat_cols)
+        ytr_fold = y[tr_idx]
+        if ps_idx is not None:
+            Xtr = pd.concat([Xtr, Xte.iloc[ps_idx]], ignore_index=True)
+            ytr_fold = np.concatenate([ytr_fold, ps_y])
+        pva, pte, it = MODELS[model](Xtr, ytr_fold, Xva, y[va_idx], Xte, params=params, cat_cols=cat_cols)
         oof[va_idx] = pva
         test_pred += pte / len(fold_ids)
         fold_auc[k] = float(roc_auc_score(y[va_idx], pva))

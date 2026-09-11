@@ -4,3 +4,5 @@
   lgb_m3_extratrees fold 3: auc 0.941175 iters 647 (108s)
   lgb_m3_extratrees fold 4: auc 0.941123 iters 789 (133s)
   lgb_m3_extratrees fold 5: auc 0.940137 iters 767 (158s)
+  lgb_m3_extratrees fold 6: auc 0.939513 iters 1184 (190s)
+  lgb_m3_extratrees fold 7: auc 0.938403 iters 656 (212s)
