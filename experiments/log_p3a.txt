@@ -1,0 +1,12 @@
+pseudo source blend OOF 0.946132
+  pseudo: 70954 neg (max p 0.0022) + 15016 pos (min p 0.8169), pos rate 0.175
+  lgb_m3_pl_small fold 0: auc 0.946207 iters 444 (20s)
+  lgb_m3_pl_small fold 1: auc 0.945789 iters 525 (41s)
+  lgb_m3_pl_small fold 2: auc 0.945564 iters 603 (66s)
+  lgb_m3_pl_small fold 3: auc 0.946532 iters 403 (86s)
+  lgb_m3_pl_small fold 4: auc 0.946529 iters 422 (106s)
+  lgb_m3_pl_small fold 5: auc 0.945953 iters 508 (129s)
+  lgb_m3_pl_small fold 6: auc 0.943984 iters 601 (154s)
+  lgb_m3_pl_small fold 7: auc 0.944045 iters 493 (176s)
+  lgb_m3_pl_small fold 8: auc 0.944747 iters 614 (200s)
+  lgb_m3_pl_small fold 9: auc 0.945644 iters 498 (221s)

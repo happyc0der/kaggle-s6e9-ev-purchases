@@ -11,3 +11,12 @@
   lgb_m3_k20 fold 10: auc 0.947399 iters 866 (315s)
   lgb_m3_k20 fold 11: auc 0.945342 iters 658 (338s)
   lgb_m3_k20 fold 12: auc 0.945337 iters 818 (367s)
+  lgb_m3_k20 fold 13: auc 0.943584 iters 633 (389s)
+  lgb_m3_k20 fold 14: auc 0.943431 iters 917 (416s)
+  lgb_m3_k20 fold 15: auc 0.945773 iters 884 (443s)
+  lgb_m3_k20 fold 16: auc 0.944943 iters 1578 (483s)
+  lgb_m3_k20 fold 17: auc 0.946124 iters 583 (505s)
+  lgb_m3_k20 fold 18: auc 0.947212 iters 698 (529s)
+  lgb_m3_k20 fold 19: auc 0.945181 iters 1259 (564s)
+  vs lgb_full_temulti_m3: +0.000061 (se 0.000022, z +2.8)
+== lgb_m3_k20: pooled OOF 0.946049 | folds 0.946061 ± 0.001277
