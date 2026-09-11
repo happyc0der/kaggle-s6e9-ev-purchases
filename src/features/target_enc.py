@@ -20,6 +20,12 @@ def te_fit_apply(key_fit, y_fit, key_apply, m: float, prior: float):
     u, inv = np.unique(key_fit, return_inverse=True)
     s = np.bincount(inv, weights=y_fit, minlength=len(u))
     c = np.bincount(inv, minlength=len(u)).astype(float)
+    if m < 0:  # "auto": empirical-Bayes shrinkage (sklearn TargetEncoder smooth='auto')
+        means = s / np.maximum(c, 1)
+        ss = np.bincount(inv, weights=y_fit ** 2, minlength=len(u))
+        within = np.sum(ss - c * means ** 2) / max(len(y_fit) - len(u), 1)
+        between = max(np.var(means), 1e-12)
+        m = within / between
     enc = (s + m * prior) / (c + m)
     idx = np.searchsorted(u, key_apply)
     idx_c = np.minimum(idx, len(u) - 1)

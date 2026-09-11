@@ -1,0 +1,2 @@
+  sh_pairte fold 0: auc 0.946867 iters 1351 (26s)
+  sh_pairte fold 1: auc 0.946450 iters 1281 (51s)
