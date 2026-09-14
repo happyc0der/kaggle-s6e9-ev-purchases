@@ -11,8 +11,12 @@ COMP = "playground-series-s6e9"
 OUR_PUBLIC = 0.94636  # current best public score of this pipeline (update after each submission)
 
 def kernels():
-    out = subprocess.run([str(ROOT / ".venv/bin/kaggle"), "kernels", "list", "--competition", COMP, "--sort-by", "scoreDescending",
-                          "--page-size", "60", "-v"], capture_output=True, text=True).stdout
+    r = subprocess.run([str(ROOT / ".venv/bin/kaggle"), "kernels", "list", "--competition", COMP, "--sort-by", "scoreDescending",
+                        "--page-size", "60", "-v"], capture_output=True, text=True)
+    out = r.stdout
+    # fail loudly: an API/network error used to look exactly like "0 new notebooks"
+    if r.returncode != 0 or "ref," not in out:
+        raise SystemExit("kaggle kernels list failed (rc=%s). stderr tail:\n%s" % (r.returncode, r.stderr[-500:]))
     rows = []
     for line in out.splitlines():
         if line.startswith("ref,") or not line.strip() or "," not in line:
@@ -22,8 +26,11 @@ def kernels():
     return rows
 
 def lb_top():
-    out = subprocess.run([str(ROOT / ".venv/bin/kaggle"), "competitions", "leaderboard", "-c", COMP, "-s"], capture_output=True, text=True).stdout
-    scores = [float(m) for m in re.findall(r"\b0\.9\d{4}\b", out)]
+    r = subprocess.run([str(ROOT / ".venv/bin/kaggle"), "competitions", "leaderboard", "-c", COMP, "-s"], capture_output=True, text=True)
+    if r.returncode != 0:
+        print("WARNING: leaderboard fetch failed (rc=%s)" % r.returncode)
+        return []
+    scores = [float(m) for m in re.findall(r"\b0\.9\d{4}\b", r.stdout)]
     return scores[:60]
 
 seen = json.loads(SEEN.read_text()) if SEEN.exists() else {}
