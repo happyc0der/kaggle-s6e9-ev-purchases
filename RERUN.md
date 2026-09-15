@@ -28,4 +28,6 @@ Environment: `.venv/bin/python` (Python 3.12; LightGBM/XGBoost/CatBoost/torch-MP
 ## Already tested and dead (do not repeat)
 Interaction TEs (exact, binned, pairs, triples), original-row similarity, density windows, digit residues/mod TEs, residual TE, neighbourhood TE (NTESpec),
 quantized columns, orig-mean & frequency for all columns, EB smoothing, pseudo-labelling, native categoricals (LGBM/CatBoost), extra_trees, deeper trees,
+extra hard-edge cells beyond the two we force (commute >= 83 km: +0.0000006; income==30000 & no-subsidy & (env==1 | anxiety M/H): +0.000000, measured 2026-09-15),
+fold-partition bagging (already in the members via scripts_foldseed.py),
 NN value embeddings / PLE / EMA / residue embeddings, bagged training-side TE, segment isotonic, segment blend weights, synthetic-ness feature, row-key TEs.
