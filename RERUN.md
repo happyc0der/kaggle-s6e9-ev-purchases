@@ -31,3 +31,14 @@ quantized columns, orig-mean & frequency for all columns, EB smoothing, pseudo-l
 extra hard-edge cells beyond the two we force (commute >= 83 km: +0.0000006; income==30000 & no-subsidy & (env==1 | anxiety M/H): +0.000000, measured 2026-09-15),
 fold-partition bagging (already in the members via scripts_foldseed.py),
 NN value embeddings / PLE / EMA / residue embeddings, bagged training-side TE, segment isotonic, segment blend weights, synthetic-ness feature, row-key TEs.
+
+## Public-OOF blending (added 2026-09-16, user chose "win by any means")
+- Public OOF/test libraries live in `data/public/` (six views + RealMLP, naji OOFs incl. Sergey, residual-stack incl. jazivxt's own OOF,
+  hybrid LGBM, four views, digit-leak, hirge, golem). `scripts_megablend2.py` pairs every OOF/test file by id, rank-transforms, hill-climbs
+  weights on OOF with a nested 10-fold check, applies hard edges, writes `submissions/mega*_<oof>.csv`. Latest: OOF 0.946484 → public 0.94642.
+- `scripts_anchor_mix.py` mixes jazivxt's public anchor (`data/public/zoomzoom/unz/own/own_001_*.csv`, public 0.94651, NO OOF) with the
+  mega blend in rank space + four boundary rules + lexsort tie-break. 70/30 → public 0.94649. The anchor author's own OOF is only 0.94598 and
+  their dataset shows an optimizer over 486 scored submissions, so the anchor is likely public-split-tuned: treat it as a hedge only.
+- When a new OOF library appears (`kaggle datasets list -s "s6e9 oof" --sort-by updated`), download to data/public/, add a loader line, rerun
+  `scripts_megablend2.py`; submit only if OOF beats the last mega entry in experiments/lb_log.csv by ≥ +0.00003.
+- Final selection on kaggle.com (two picks): the best-OOF mega file (honest, private-safe) and mega3_a70 (best public, hedge).
