@@ -9,3 +9,5 @@ notebooks/*.ipynb_checkpoints
 
 # third-party public notebooks pulled for study (Kaggle, their authors licenses)
 notebooks/public/
+catboost_info/
+experiments/*.npy

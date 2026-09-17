@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parent
 W = ROOT / "experiments" / "watch"; W.mkdir(parents=True, exist_ok=True)
 SEEN = W / "seen_kernels.json"
 COMP = "playground-series-s6e9"
-OUR_PUBLIC = 0.94636  # current best public score of this pipeline (update after each submission)
+OUR_PUBLIC = 0.94649  # current best public score of this pipeline (update after each submission)
 
 def kernels():
     r = subprocess.run([str(ROOT / ".venv/bin/kaggle"), "kernels", "list", "--competition", COMP, "--sort-by", "scoreDescending",
